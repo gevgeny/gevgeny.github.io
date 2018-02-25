@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/app.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'docs')
+    path: path.resolve(__dirname)
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -18,8 +18,8 @@ module.exports = {
         minifyJS: true,
         removeAttributeQuotes: true
       },
-      template: './index.html'
+      template: './template.html'
     }),
-    new CopyWebpackPlugin([{from:'./img',to:path.resolve(__dirname, 'docs')} ])
+    // new CopyWebpackPlugin([{from:'./img',to:path.resolve(__dirname, 'docs')} ])
   ]
 };
