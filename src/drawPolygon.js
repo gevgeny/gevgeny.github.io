@@ -32,24 +32,3 @@ export default (ctx, x, y, halfedges) => {
   ctx.strokeStyle = color;
   ctx.stroke();
 };
-
-// app.drawPolygon = (ctx, x, y, halfedges) => {
-//   // ctx.fillStyle = '#214C71';
-//   ctx.fillStyle = getColor(x, y);
-//   ctx.beginPath();
-//   const start = getMiddlePoint(halfedges[0].getStartpoint(), halfedges[0].getEndpoint());
-//   ctx.moveTo(start.x, start.y);
-//
-//   for (let i = 0; i < halfedges.length; i++) {
-//     const currentEdge = halfedges[i];
-//     const nextEdge = i < halfedges.length - 1 ? halfedges[i + 1] : halfedges[0];
-//
-//     // const p1 = getMiddlePoint(currentEdge.getStartpoint(), currentEdge.getEndpoint());
-//     const cp = currentEdge.getEndpoint();
-//     const end = getMiddlePoint(nextEdge.getStartpoint(), nextEdge.getEndpoint());
-//     ctx.quadraticCurveTo(cp.x, cp.y, end.x, end.y);
-//     // const next = halfedges[i].getEndpoint();
-//     // ctx.lineTo(next.x, next.y);
-//   }
-//   ctx.fill();
-// };
