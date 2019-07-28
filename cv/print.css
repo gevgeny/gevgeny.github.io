@@ -1,0 +1,15 @@
+body {
+  background: none;
+}
+.container {
+  margin: 0;
+  box-shadow: none;
+  background: white;
+}
+.content {
+  padding: 1rem 1rem;
+}
+
+.pdf-link {
+  display: none;
+}
