@@ -8,6 +8,7 @@ html, body {
 }
 
 .pdf-link {
+  text-decoration: none;
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
@@ -24,7 +25,6 @@ html, body {
 }
 
 a {
-  text-decoration: none;
   color: var(--primary-color);
   transition: all 150ms;
 }
@@ -112,6 +112,7 @@ body {
 }
 .list li {
   position: relative;
+  padding: 0.25rem 0;
 }
 .list li::before {
   content: "•";
@@ -120,10 +121,11 @@ body {
   font-size: 1.6rem;
   line-height: 0;
   position: absolute;
-  top: 0.75rem;
+  top: 1rem;
   left: -1rem;
 }
 .tag {
+  vertical-align: middle;
   background: var(--primary-color);
   white-space: nowrap;
   color: var(--bg-color);
