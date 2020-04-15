@@ -58,10 +58,28 @@ body {
   padding-bottom: 1rem;
 }
 
-.location {
+.links {
+  max-width: 440px;
   margin: 0.5rem 0;
   font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
 }
+
+.link-icon {
+  width: 1rem;
+  margin: 0 0.2rem;
+}
+
+.link-mail {
+  height: 18px;
+}
+
+.link-icons {
+  display: flex;
+  align-items: center;
+}
+
 .pin {
   position: relative;
   height: 0.7rem;
