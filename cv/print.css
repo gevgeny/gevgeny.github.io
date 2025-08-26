@@ -1,15 +1,154 @@
-body {
-  background: none;
-}
-.container {
-  margin: 0;
-  box-shadow: none;
-  background: white;
-}
-.content {
-  padding: 1rem 1rem;
+/*body {*/
+/*  !*background: none;*!*/
+/*  !*color: black;*!*/
+/*}*/
+
+/*.job {*/
+/*  padding: 0;*/
+/*  border: none;*/
+/*  border-radius: 0;*/
+/*  background: transparent;*/
+/*}*/
+
+/* ===== Print stylesheet for A4, compact and clean ===== */
+
+
+/*a[href^="http"]:after {*/
+/*  content: " (" attr(href) ")";*/
+/*  font-weight: 400;*/
+/*  color: #555;*/
+/*}*/
+
+
+
+@page {
+  size: A4;
+  margin: 10mm 12mm;
 }
 
-.pdf-link {
-  display: none;
+* {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
 }
+
+/* Base typography & layout scaling for print */
+html, body {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.wrap {
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Header */
+header.header {
+  margin-bottom: 14px !important;
+  text-align: left;
+}
+
+.name {
+  font-size: 20px !important;
+  margin: 0 0 2px 0 !important;
+}
+
+.title {
+  font-size: 12px !important;
+  margin: 0 0 8px 0 !important;
+  color: #333 !important;
+}
+
+.links {
+  gap: 8px !important;
+  font-size: 11px !important;
+  justify-content: flex-start !important;
+  flex-wrap: wrap;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Sections */
+.section {
+  margin-bottom: 14px !important;
+}
+
+.section h3 {
+  font-size: 13px !important;
+  margin: 0 0 6px 0 !important;
+  padding-bottom: 2px !important;
+  border-bottom: 0.5px solid #d1d5db !important;
+  break-after: avoid;
+}
+
+/* Jobs */
+.job {
+  background: #fff !important;
+  border: 0.6px solid #d1d5db !important;
+  border-radius: 6px !important;
+  padding: 10px 12px !important;
+  margin-bottom: 10px !important;
+
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.job__header {
+  grid-template-columns: 1fr auto !important;
+  gap: 6px 12px !important;
+  align-items: start !important;
+}
+
+.job__title { font-size: 13.5px !important; margin: 0 !important; }
+.job__company { font-size: 12px !important; }
+.job__meta { font-size: 11px !important; color: #555 !important; text-align: right !important; }
+
+/* Tags */
+.tags {
+  margin: 6px 0 0 !important;
+  gap: 4px !important;
+}
+
+.tag {
+  padding: 2px 6px !important;
+  font-size: 10px !important;
+  border-radius: 999px !important;
+  border: 0.6px solid #d1d5db !important;
+  background: #f1f5f9 !important;
+  color: #111 !important;
+}
+
+/* Bullets */
+.bullets { margin: 8px 0 0 !important; padding-left: 16px !important; }
+.bullets li { margin: 3px 0 !important; }
+.bullets li strong { font-weight: 700 !important; }
+
+/* Lists */
+.section ul { margin: 6px 0 0 !important; padding-left: 16px !important; }
+
+/* Links: keep same style (blue + underline, clickable in PDF) */
+a {
+  color: #2563eb !important;
+  /*text-decoration: underline !important;*/
+  font-weight: 500 !important;
+}
+a:hover { color: #1e40af !important; }
+
+/* Prevent unwanted blank space before sections */
+.section, .job, .wrap, header.header {
+  page-break-before: auto !important;
+  page-break-after: auto !important;
+  break-before: auto !important;
+  break-after: auto !important;
+}
+
+/* Avoid bad breaks */
+h3, .job__header { break-after: avoid; }
+/*.job, .section { break-inside: avoid; page-break-inside: avoid; }*/
+
+/* Paragraphs tighter */
+p { margin: 0 0 6px 0 !important; }
+
+/* Hide “Open as PDF” link */
+.pdf-link { display: none !important; }

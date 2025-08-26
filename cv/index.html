@@ -11,209 +11,283 @@
   <meta property="og:locale" content="en_US" />
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
-  <link rel="stylesheet" href="./index.css">
+
+  <title>Eugene Gluhotorenko - CV</title>
+  <style>
+    a {
+      color: #2563eb;
+      font-weight: 500;
+      font-size:.95rem;
+      text-decoration:none;
+    }
+
+    a:hover{
+      text-decoration:underline;
+    }
+
+    :root{
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --card: #f8fafc;
+      --border: #e5e7eb;
+      --accent: #111827;
+      --badge-bg: #eef2ff;
+      --badge-text: #3730a3;
+    }
+    /*@media (prefers-color-scheme: light){*/
+    /*  :root{*/
+    /*    --bg: #0b0d12;*/
+    /*    --text: #e5e7eb;*/
+    /*    --muted: #9ca3af;*/
+    /*    --card: #111827;*/
+    /*    --border: #1f2937;*/
+    /*    --accent: #f3f4f6;*/
+    /*    --badge-bg: #1f2937;*/
+    /*    --badge-text: #c7d2fe;*/
+    /*  }*/
+    /*}*/
+
+    body{
+      margin:0;
+      font: 15px/1.6 ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .wrap{ max-width: 860px; padding: 28px; margin: 0 auto; }
+    header.header{ text-align:center; margin-bottom: 32px; }
+    .name{ margin:0; font-size: 1.8rem; font-weight: 700; }
+    .title{ margin:4px 0 10px; font-size:1.05rem; font-weight:500; color:var(--muted); }
+    .links{ list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; justify-content:center; gap:14px; font-size:.9rem; }
+
+    .section{ margin-bottom: 28px; }
+    .section h3{ font-size:1.15rem; margin-bottom:10px; border-bottom:1px solid var(--border); padding-bottom:4px; }
+
+    .job{
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:18px 20px;
+      margin-bottom:16px;
+    }
+    .job__header{ display:grid; grid-template-columns:1fr auto; gap:8px 16px; align-items:start; }
+    .job__title{ margin:0; font-weight:600; }
+    .job__meta{ text-align:right; font-size:.9rem; color:var(--muted); }
+    .tags{ margin:12px 0 0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+    .tag{ display:inline-block; padding:4px 10px; border-radius:999px; background:var(--badge-bg); color:var(--badge-text); border:1px solid var(--border); font-size:.85rem; line-height:1.2; }
+    .bullets{ margin:14px 0 0; padding-left:18px; }
+    .bullets li{ margin:6px 0; }
+    .bullets li strong{ font-weight:700; margin-right:.25rem; }
+
+    @media (max-width:560px){
+      .job__header{ grid-template-columns:1fr; }
+      .job__meta{ text-align:left; }
+    }
+  </style>
   <link rel="stylesheet" media="print" href="./print.css">
-  <title>Eugene Gluhotorenko</title>
 </head>
 <body>
-  <section class="container">
-    <a href="./Eugene%20Gluhotorenko%20CV.pdf" target="_blank" class="pdf-link">Open as PDF</a>
-    <div class="content">
-      <header class="header">
-        <h1 class="name">Eugene Gluhotorenko</h1>
-        <h2 class="title">Senior Software Engineer, Technical Lead</h2>
-        <ul class="links">
-          <li>
-            <svg class="icon icon-pin" viewBox="0 0 18 18"><path fill="currentColor" d="M2 6.38C2 9.91 8.1 17.7 8.1 17.7c.22.29.58.29.8 0 0 0 6.1-7.8 6.1-11.32A6.44 6.44 0 0 0 8.5 0 6.44 6.44 0 0 0 2 6.38zm9.25.12a2.75 2.75 0 1 1-5.5 0 2.75 2.75 0 0 1 5.5 0z"></path></svg>
-            <span>The Netherlands 🇳🇱</span>
-          </li>
-          <li>
-            <svg class="icon icon-mail" viewBox="0 0 512 512" class="svg-inline--fa fa-envelope fa-w-16 fa-3x"><path fill="currentColor" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z" class=""></path></svg>
-            <a target="_blank" href="mailto:e.gluhotorenko@gmail.com">e.gluhotorenko@gmail.com</a>
-          </li>
-          <li>
-            <svg class="icon icon-li" viewBox="0 0 448 512" class="svg-inline--fa fa-linkedin-in fa-w-14 fa-3x"><path fill="currentColor" d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" class=""></path></svg>
-            <a target="_blank" href="https://www.linkedin.com/in/eugene-gluhotorenko-9ba19075">eugene gluhotorenko</a>
-          </li>
-          <li>
-            <svg class="icon icon-gh" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" class=""></path></svg>
-            <a target="_blank" href="http://github.com/gevgeny">gevgeny</a>
-          </li>
-        </ul>
-      </header>
-      <main class="body">
-        <section class="section">
-          <h3 class="section-header">About me</h3>
-          Software engineer with 15 years experience building scalable web applications. Specialized in frontend architecture with some backend experience. Worked across medtech, fintech, and low-code platforms, solving complex technical problems and collaborating with teams where tech intersects with science. Passionate about data visualization, optimization, and open source.
-        </section>
-        <section class="section">
-          <h3 class="section-header">Skills</h3>
-          <ul class="list">
-            <li><b>Frontend:</b> JavaScript, TypeScript, React, React Native, MobX, PixiJS, HTML, CSS, and other modern frameworks/libraries</li>
-            <li><b>Backend / Platform & Monitoring:</b> Node.js, Python, Vercel, Prometheus, Sentry, Opsgenie</li>
-            <li><b>Architecture & Leadership:</b> System Design (ADRs, RFCs), A/B Testing, Micro Frontends, Performance Optimization, Technical Documentation, Mentorship, Conducting Technical Interviews, Agile/Scrum</li>
-          </ul>
-        </section>
-        <section class="section">
-          <h3 class="section-header">Experience</h3>
+<div class="wrap">
+  <header class="header">
+    <h1 class="name">Eugene Gluhotorenko</h1>
+    <h2 class="title">Senior Software Engineer, Technical Lead</h2>
+    <ul class="links">
+      <li>The Netherlands</li>
+      <li><a href="mailto:e.gluhotorenko@gmail.com">e.gluhotorenko@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/eugene-gluhotorenko-9ba19075">LinkedIn</a></li>
+      <li><a href="http://github.com/gevgeny">GitHub</a></li>
+    </ul>
+  </header>
 
-          <div class="employment">
-            <p class="strong">Tech Lead Engineer (Frontend)</p>
-            <p class="small"><a href="https://flo.health/" target="_blank">Flo Health</a> | From Jun 2022</p>
-            <div class="tags">
-              <span class="tag">TypeScript</span>
-              <span class="tag">React</span>
-              <span class="tag">Vercel</span>
-              <span class="tag">Node.js</span>
-              <span class="tag">Python</span>
-              <span class="tag">Redux</span>
-              <span class="tag">A/B Testing</span>
-              <span class="tag">Monitoring</span>
-              <span class="tag">Prometheus</span>
-              <span class="tag">Sentry</span>
-              <span class="tag">Opsgenie</span>
-            </div>
-            <ul class="list">
-              <li>Architected graph-based onboarding engine, enabling personalized flows, ~10 A/B tests per week, and no-dev funnel creation for product managers.</li>
-              <li>Introduced monitoring & alerting, reducing critical failure response time from hours to minutes.</li>
-              <li>Wrote design docs (ADRs, RFCs) and documentation for developers and product managers.</li>
-              <li>Mentored engineers and strengthened team capacity via interviews and knowledge sharing.</li>
-            </ul>
-          </div>
-
-          <div class="employment">
-            <p class="strong">Senior Software Engineer</p>
-            <p class="small"><a href="https://www.epo.org/" target="_blank">EPO</a> | Jan 2021 → May 2022</p>
-            <div class="tags">
-              <span class="tag">TypeScript</span>
-              <span class="tag">React</span>
-              <span class="tag">MobX</span>
-              <span class="tag">Node.js</span>
-            </div>
-            <ul class="list">
-              <li>Optimized patent annotation tool by moving from SVG to Canvas, improving rendering speed 4× and enabling thousands of annotations per document.</li>
-              <li>Designed and implemented a PDF-to-HTML converter with integrated viewer and annotation tools, used across patent search workflows.</li>
-              <li>Migrated legacy monolith to a micro-frontend architecture, making the patent document viewer portable across company projects.</li>
-              <li>Established best practices for the engineering team, improving code reviews and overall app performance.</li>
-              <li>Conducted frontend interviews (JavaScript, performance, computer science).</li>
-            </ul>
-          </div>
-
-          <div class="employment">
-            <p class="strong">Software TechLead</p>
-            <p class="small"><a href="https://www.massgeneralbrigham.org/en/research-and-innovation/centers-and-programs/artificial-intelligence" target="_blank">MGH & BWH Center for Clinical Data Science</a> | Oct 2019 → Sep 2020</p>
-            <div class="tags">
-              <span class="tag">TypeScript</span>
-              <span class="tag">React</span>
-              <span class="tag">MobX</span>
-              <span class="tag">Cornerstone.js</span>
-              <span class="tag">Material-UI</span>
-              <span class="tag">DICOM</span>
-            </div>
-            <ul class="list">
-              <li>Built a web-based medical image viewer to visualize AI model outputs, enabling research centers to validate algorithms and adopted as reference by MGH/BWH Radiology.</li>
-              <li>Overcame technical challenges in rendering tens of thousands of MRI images efficiently while maintaining compatibility with DICOM standards.</li>
-              <li>Developed a web hub with backend team to load, process, and view hundreds of medical studies, accelerating ML engineers’ workflows.</li>
-              <li>Owned frontend development stack and practices across the company.</li>
-            </ul>
-          </div>
-
-          <div class="employment">
-            <p class="strong">Senior Software Engineer</p>
-            <p class="small"><a href="https://www.softswiss.com/" target="_blank">SoftSwiss</a> | Apr 2018 → Oct 2019</p>
-            <div class="tags">
-              <span class="tag">TypeScript</span>
-              <span class="tag">PixiJS</span>
-              <span class="tag">WebGL</span>
-              <span class="tag">Node.js</span>
-            </div>
-            <ul class="list">
-              <li>Developed a multi-platform 2D game engine using TypeScript and WebGL.</li>
-              <li>Optimized rendering performance for smooth animations on low-end mobile devices.</li>
-              <li>Contributed to team growth by conducting frontend interviews.</li>
-            </ul>
-          </div>
-
-          <div class="employment">
-            <p class="strong">Senior Software Engineer</p>
-            <p class="small"><a href="https://mintdata.com/" target="_blank">MintData</a> | Aug 2016 → Mar 2018</p>
-            <div class="tags">
-              <span class="tag">TypeScript</span>
-              <span class="tag">React</span>
-              <span class="tag">WebSocket</span>
-            </div>
-            <ul class="list">
-              <li>Contributed to a low-code platform for real-time web apps, including a GUI builder enabling interface creation without HTML/CSS knowledge.</li>
-              <li>Implemented real-time synchronization across devices and supported team growth through technical interviews.</li>
-            </ul>
-          </div>
-
-          <div class="employment">
-            <p class="strong">Senior Software Developer</p>
-            <p class="small"><a href="https://www.ctdev.by/en/" target="_blank">CTDEV</a> | Oct 2013 → Aug 2016</p>
-            <div class="tags">
-              <span class="tag">JavaScript</span>
-              <span class="tag">AngularJS</span>
-              <span class="tag">Highchars</span>
-              <span class="tag">D3.js</span>
-              <span class="tag">Node.js</span>
-              <span class="tag">Scrum / Agile</span>
-            </div>
-            <ul class="list">
-              <li>Developed a fintech news portal powered by a custom recommendation engine.</li>
-              <li>Built interactive data visualization libraries for charts, graphs, and maps.</li>
-            </ul>
-          </div>
-
-          <div class="employment">
-            <p class="strong">Software Developer</p>
-            <p class="small"><a href="https://www.epam.com/" target="_blank">EPAM Systems</a> | Dec 2010 → Sep 2013</p>
-            <div class="tags">
-              <span class="tag">C#</span>
-              <span class="tag">.NET</span>
-              <span class="tag">jQuery</span>
-              <span class="tag">Angular.JS</span>
-            </div>
-            <ul class="list">
-              <li>Contributed to a platform for publishing financial applications.</li>
-              <li>Developed web apps and JavaScript APIs for time-series data visualization and market data access.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section>
-          <h3 class="section-header">Open Source projects</h3>
-          <ul class="list">
-            <li>
-              <a target="_blank" href="https://chromewebstore.google.com/detail/spotlight-lingo-%F0%9F%8C%8E-transl/dleflnkkioeajpjokhniiaieonpacano">Spotlight Lingo</a>. — Chrome extension for subtitle translation on streaming services, 3k+ active users.
-            </li>
-            <li>
-              <a target="_blank" href="https://github.com/gevgeny/BabblerApp">Babbler</a>. — macOS language switcher app, simplifying keyboard layout management.
-            </li>
-            <li>
-              <a target="_blank" href="https://github.com/gevgeny/angular2-highcharts">angular2-highcharts</a>. — HighchartsJS wrapper for Angular, 300+ GitHub stars, used to be widely used in Angular projects.
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h3 class="section-header">Blog Articles</h3>
-          <ul class="list">
-            <li>
-              <a target="_blank" href="https://medium.com/styled-components/how-styled-components-works-618a69970421">How styled-components works: A deep dive under the hood</a> (Medium, 2018) — deep technical article explaining internals of styled-components, with 21k+ reads, 3k+ claps, and recommended by the library’s creator.
-            </li>
-          </ul>
-        </section>
-
-        <section class="section">
-          <h3 class="section-header">Education</h3>
-          <ul class="list">
-            <li>Belarusian State University of Informatics and Radioelectronics — B.Sc. in Computer Science (Network Systems), 2011</li>
-          </ul>
-        </section>
-      </main>
-    </div>
+  <section class="section">
+    <h3>About Me</h3>
+    <p>Software engineer with ~15 years experience building scalable web applications. Specialized in frontend architecture with some backend experience. Worked across medtech, fintech, and low-code platforms, solving complex technical problems and collaborating with teams where tech intersects with science. Passionate about data visualization, optimization, and open source.</p>
   </section>
+
+  <section class="section">
+    <h3>Skills</h3>
+    <ul>
+      <li><strong>Frontend:</strong> JavaScript, TypeScript, React, React Native, MobX, PixiJS, HTML, CSS, and other modern frameworks/libraries</li>
+      <li><strong>Backend / Platform & Monitoring:</strong> Node.js, Python, Vercel, Prometheus, Sentry, Opsgenie</li>
+      <li><strong>Architecture & Leadership:</strong> System Design (ADRs, RFCs), A/B Testing, Micro Frontends, Performance Optimization, Technical Documentation, Mentorship, Conducting Technical Interviews, Agile/Scrum</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h3>Experience</h3>
+
+<!--    Flo-->
+    <article class="job">
+      <header class="job__header">
+        <div>
+          <h4 class="job__title">Tech Lead Engineer (Frontend)</h4>
+          <a href="https://flo.health/" class="job__company">Flo Health</a>
+        </div>
+        <div class="job__meta">Jun 2022 – Present</div>
+      </header>
+      <ul class="tags"><li class="tag">TypeScript</li><li class="tag">React</li><li class="tag">Vercel</li><li class="tag">Node.js</li><li class="tag">Python</li><li class="tag">Redux</li><li class="tag">A/B Testing</li><li class="tag">Monitoring</li><li class="tag">Prometheus</li><li class="tag">Sentry</li><li class="tag">Opsgenie</li></ul>
+      <ul class="bullets">
+        <li>Architected graph-based onboarding engine, enabling personalized flows, ~10 A/B tests per week, and no-dev funnel creation.</li>
+        <li>Introduced monitoring & alerting, reducing critical failure response from hours to minutes.</li>
+        <li>Wrote design docs (ADRs, RFCs) and documentation for developers and product managers.</li>
+        <li>Mentored engineers and supported hiring via interviews and knowledge sharing.</li>
+      </ul>
+    </article>
+
+<!--    EPO-->
+    <article class="job">
+      <header class="job__header">
+        <div>
+          <h4 class="job__title">Senior Software Engineer</h4>
+          <a href="https://www.epo.org/" target="_blank" class="job__company">EPO</a>
+        </div>
+        <div class="job__meta">Jan 2021 – May 2022</div>
+      </header>
+      <ul class="tags">
+        <li class="tag">TypeScript</li>
+        <li class="tag">React</li>
+        <li class="tag">MobX</li>
+        <li class="tag">Node.js</li>
+      </ul>
+      <ul class="bullets">
+        <li>Optimized patent annotation tool, improving rendering speed 4× and enabling thousands of annotations per document.</li>
+        <li>Designed and implemented a PDF-to-HTML converter with integrated viewer and annotation tools, used across patent search workflows.</li>
+        <li>Migrated legacy monolith to a micro-frontend architecture, making the patent document viewer portable across company projects.</li>
+        <li>Established best practices for the engineering team, improving code reviews and overall app performance.</li>
+        <li>Conducted frontend interviews (JavaScript, performance, computer science).</li>
+      </ul>
+    </article>
+
+<!--    MGH & BWH-->
+    <article class="job">
+      <header class="job__header">
+        <div>
+          <h4 class="job__title">Software TechLead</h4>
+          <a href="https://www.massgeneralbrigham.org/en/research-and-innovation/centers-and-programs/artificial-intelligence" target="_blank" class="job__company">MGH & BWH Center for Clinical Data Science</a>
+        </div>
+        <div class="job__meta">Oct 2019 – Sep 2020</div>
+      </header>
+      <ul class="tags">
+        <li class="tag">TypeScript</li>
+        <li class="tag">React</li>
+        <li class="tag">MobX</li>
+        <li class="tag">Cornerstone.js</li>
+        <li class="tag">Material-UI</li>
+        <li class="tag">DICOM</li>
+      </ul>
+      <ul class="bullets">
+        <li>Built a web-based medical image viewer to visualize AI model outputs, enabling research centers to validate algorithms and adopted as reference by MGH/BWH Radiology.</li>
+        <li>Overcame technical challenges in rendering tens of thousands of MRI images efficiently while maintaining compatibility with DICOM standards.</li>
+        <li>Developed a web hub with backend team to load, process, and view hundreds of medical studies, accelerating ML engineers’ workflows.</li>
+        <li>Owned frontend development stack and practices across the company.</li>
+      </ul>
+    </article>
+
+<!--    SS-->
+    <article class="job">
+      <header class="job__header">
+        <div>
+          <h4 class="job__title">Software TechLead</h4>
+          <a href="https://www.softswiss.com/" target="_blank" class="job__company">SoftSwiss</a>
+        </div>
+        <div class="job__meta">Apr 2018 – Oct 2019</div>
+      </header>
+      <ul class="tags">
+        <li class="tag">TypeScript</li>
+        <li class="tag">PixiJS</li>
+        <li class="tag">WebGL</li>
+        <li class="tag">Node.js</li>
+      </ul>
+      <ul class="bullets">
+        <li>Developed a multi-platform 2D game engine using TypeScript and WebGL.</li>
+        <li>Optimized rendering performance for smooth animations on low-end mobile devices.</li>
+        <li>Contributed to team growth by conducting frontend interviews.</li>
+      </ul>
+    </article>
+
+    <!--    MintData-->
+    <article class="job">
+      <header class="job__header">
+        <div>
+          <h4 class="job__title">Senior Software Engineer</h4>
+          <a href="https://mintdata.com/" target="_blank" class="job__company">MintData</a>
+        </div>
+        <div class="job__meta">Aug 2016 – Mar 2018</div>
+      </header>
+      <ul class="tags">
+        <li class="tag">TypeScript</li>
+        <li class="tag">PixiJS</li>
+        <li class="tag">WebSocket</li>
+      </ul>
+      <ul class="bullets">
+        <li>Contributed to a low-code platform for real-time web apps, including a GUI builder enabling interface creation without HTML/CSS knowledge.</li>
+        <li>Implemented real-time synchronization across devices and supported team growth through technical interviews.</li>
+      </ul>
+    </article>
+
+    <!--    CTCO-->
+    <article class="job">
+      <header class="job__header">
+        <div>
+          <h4 class="job__title">Senior Software Engineer</h4>
+          <a href="https://www.ctco.eu/" target="_blank" class="job__company">CTCo</a>
+        </div>
+        <div class="job__meta">Oct 2013 – Aug 2016</div>
+      </header>
+      <ul class="tags">
+        <li class="tag">JavaScript</li>
+        <li class="tag">AngularJS</li>
+        <li class="tag">Highchars</li>
+        <li class="tag">D3.js</li>
+      </ul>
+      <ul class="bullets">
+        <li>Developed a fintech news portal powered by a custom recommendation engine.</li>
+        <li>Built interactive data visualization libraries for charts, graphs, and maps.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <header class="job__header">
+        <div>
+          <h4 class="job__title">Software Developer</h4>
+          <a href="https://www.epam.com/" target="_blank" class="job__company">EPAM Systems</a>
+        </div>
+        <div class="job__meta">Dec 2010 – Oct 2013</div>
+      </header>
+      <ul class="tags">
+        <li class="tag">JavaScript</li>
+        <li class="tag">C#</li>
+        <li class="tag">.NET</li>
+        <li class="tag">jQuery</li>
+        <li class="tag">Angular.JS</li>
+      </ul>
+      <ul class="bullets">
+        <li>Contributed to a platform for publishing financial applications.</li>
+        <li>Developed web apps and JavaScript APIs for time-series data visualization and market data access.</li>
+      </ul>
+    </article>
+
+  </section>
+
+  <section class="section">
+    <h3>Open Source Projects</h3>
+    <ul>
+      <li><a target="_blank" href="https://chromewebstore.google.com/detail/spotlight-lingo-%F0%9F%8C%8E-transl/dleflnkkioeajpjokhniiaieonpacano">Spotlight Lingo</a> — Chrome extension for subtitle translation on streaming services, 3k+ active users.</li>
+      <li><a target="_blank" href="https://github.com/gevgeny/BabblerApp">Babbler</a> — macOS language switcher app, simplifying keyboard layout management.</li>
+      <li><a target="_blank" href="https://github.com/gevgeny/angular2-highcharts">angular2-highcharts</a> — HighchartsJS wrapper for Angular, 300+ GitHub stars.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h3>Blog & Publications</h3>
+    <ul>
+      <li><a target="_blank" href="https://medium.com/styled-components/how-styled-components-works-618a69970421">How styled-components works: A deep dive under the hood</a> (Medium, 2018) — deep technical article explaining internals of styled-components, with 21k+ reads, 3k+ claps, and recommended by the library’s creator.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h3>Education</h3>
+    <p>Belarusian State University of Informatics and Radioelectronics — B.Sc. in Computer Science (Network Systems), 2011</p>
+  </section>
+</div>
 </body>
-</html>
