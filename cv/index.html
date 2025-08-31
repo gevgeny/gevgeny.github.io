@@ -58,7 +58,8 @@
     header.header{ text-align:center; margin-bottom: 32px; }
     .name{ margin:0; font-size: 1.8rem; font-weight: 700; }
     .title{ margin:4px 0 10px; font-size:1.05rem; font-weight:500; color:var(--muted); }
-    .links{ list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; justify-content:center; gap:14px; font-size:.9rem; }
+    .links{ list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; justify-content:center; gap:14px; font-size:.9rem; align-items: center; }
+    .links li + li::before { content: "•"; position: relative; right: 8px; color: var(--muted); }
 
     .section{ margin-bottom: 28px; }
     .section h3{ font-size:1.15rem; margin-bottom:10px; border-bottom:1px solid var(--border); padding-bottom:4px; }
@@ -108,7 +109,7 @@
     <h3>Skills</h3>
     <ul>
       <li><strong>Frontend:</strong> JavaScript, TypeScript, React, React Native, MobX, PixiJS, HTML, CSS, and other modern frameworks/libraries</li>
-      <li><strong>Backend / Platform & Monitoring:</strong> Node.js, Python, Vercel, Prometheus, Sentry, Opsgenie</li>
+      <li><strong>Backend / Platform & Monitoring:</strong> Node.js, Vercel, Prometheus, Sentry, Opsgenie, Python</li>
       <li><strong>Architecture & Leadership:</strong> System Design (ADRs, RFCs), A/B Testing, Micro Frontends, Performance Optimization, Technical Documentation, Mentorship, Conducting Technical Interviews, Agile/Scrum</li>
     </ul>
   </section>

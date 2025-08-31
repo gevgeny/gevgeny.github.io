@@ -68,6 +68,8 @@ header.header {
   margin: 0 !important;
   padding: 0 !important;
 }
+.links li + li::before { right: 4px; }
+
 
 /* Sections */
 .section {
