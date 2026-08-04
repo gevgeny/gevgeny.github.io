@@ -34,8 +34,8 @@
   <section class="hero">
     <h1>Switch tabs like you switch apps.</h1>
     <p class="lede">
-      Find the tab you need at a glance. TabFlick gives you one native app switcher for your tabs,
-      available from anywhere on your Mac.<br>
+      <span class="hero-brand">TabFlick</span> brings your recent tabs into one native app
+      you can open from anywhere on your Mac.<br>
       Works with
       <span class="browser"><img src="assets/browsers/chrome.svg" alt="" width="17" height="17">Chrome</span>,
       <span class="browser"><img src="assets/browsers/safari.svg" alt="" width="17" height="17">Safari</span>,
@@ -44,7 +44,7 @@
       and <span class="browser"><img src="assets/browsers/edge.svg" alt="" width="17" height="17">Edge</span>.
     </p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="#get">Get TabFlick for Mac</a>
+      <a class="btn btn-primary" href="#get">Coming soon for Mac</a>
     </div>
   </section>
 
@@ -328,87 +328,44 @@
       </article>
     </div>
     <div class="promo-controls" aria-label="Promo navigation">
-      <button class="promo-control" type="button" data-promo-prev aria-label="Previous promo">←</button>
-      <button class="promo-control" type="button" data-promo-next aria-label="Next promo">→</button>
+      <button class="promo-control promo-control-previous" type="button" data-promo-prev aria-label="Previous promo">
+        <img src="imgs/chevron_right.svg" alt="">
+      </button>
+      <button class="promo-control" type="button" data-promo-next aria-label="Next promo">
+        <img src="imgs/chevron_right.svg" alt="">
+      </button>
     </div>
-  </section>
-
-  <section id="features" class="features">
-    <h2 class="section-title">Built for everyday browsing</h2>
-
-    <div class="feature-list">
-      <article class="feature-item">
-        <h3>Native on macOS</h3>
-        <p>
-          TabFlick runs as a native Mac app, so its switcher can appear over any app and take you
-          directly to the browser window and tab you need.
-        </p>
-      </article>
-
-      <article class="feature-item">
-        <h3>Manage tabs without opening them</h3>
-        <p>
-          Hover any preview to close that tab, or unpin a pinned one, without opening it or
-          losing your place.
-        </p>
-      </article>
-
-      <article class="feature-item">
-        <h3>Make it yours</h3>
-        <p>
-          Configure your shortcuts, how many tabs to show, the accent colour, and whether tabs
-          switch live as you cycle.
-        </p>
-      </article>
-
-      <article class="feature-item">
-        <h3>Most-recent tabs first</h3>
-        <p>
-          TabFlick keeps the tabs you just used closest, so the one you want is usually only one
-          tap away.
-        </p>
-      </article>
-    </div>
-
   </section>
 
   <section id="get" class="get">
     <h2 class="section-title">Get <span class="brand-accent">TabFlick</span> for Mac</h2>
     <p class="get-lede">
-      Install the Mac app—Safari support is included. To use TabFlick with Chrome, Firefox, Brave
-      or Edge, add the extension to those browsers. They connect automatically.
+      Start with the native Mac app. Safari support is included.
     </p>
 
-    <div class="install-flow">
-      <a class="setapp-cta" href="#" data-store="setapp">
-        <span class="setapp-cta-main">
-          <img class="setapp-icon" src="imgs/setapp.svg" alt="">
-          <span class="setapp-copy">
-            <span class="install-step">1 · Native Mac app</span>
-            <strong>Coming soon to Setapp</strong>
-          </span>
+    <div class="install-panel">
+      <div class="install-row">
+        <span class="install-copy">
+          <span class="install-step">1 · Native app</span>
+          <span class="install-note">macOS 13 or later</span>
         </span>
-        <span class="setapp-meta">
-          macOS 13 or later
-          <span aria-hidden="true">→</span>
-        </span>
-      </a>
+        <a class="install-action" href="#" data-store="setapp">
+          <img class="install-action-icon" src="imgs/setapp.svg" alt="">
+          <strong>Coming soon to Setapp</strong>
+          <img class="setapp-chevron" src="imgs/chevron_right.svg" alt="">
+        </a>
+      </div>
 
-      <div class="extension-row">
-        <span class="install-step">2 · Add the extension</span>
-        <div class="extension-options">
-          <a class="extension-option" href="https://chromewebstore.google.com/detail/ocelpfbemnmdjahbajahhbaaljdbhmcc" target="_blank" rel="noopener" data-release-link>
-            <img src="assets/browsers/chrome.svg" alt="">
-            <span>Chrome · Brave · Edge · Arc</span>
+      <div class="install-row">
+        <span class="install-copy">
+          <span class="install-step">2 · Optional browser extensions</span>
+          <span class="install-note">If you want TabFlick to work with browsers other than Safari.</span>
+        </span>
+        <div class="install-actions">
+          <a class="install-action" href="https://chromewebstore.google.com/detail/ocelpfbemnmdjahbajahhbaaljdbhmcc" target="_blank" rel="noopener" data-browser-extension-link data-release-link>
+            <img src="assets/browsers/chrome.svg" alt="" data-browser-extension-icon>
+            <span data-browser-extension-name>Chrome</span>
           </a>
-          <a class="extension-option" href="https://addons.mozilla.org/firefox/addon/tabflick-pro/" target="_blank" rel="noopener" data-release-link>
-            <img src="assets/browsers/firefox.svg" alt="">
-            <span>Firefox</span>
-          </a>
-          <span class="extension-option extension-included">
-            <img src="assets/browsers/safari.svg" alt="">
-            <span>Safari included</span>
-          </span>
         </div>
       </div>
     </div>
@@ -417,12 +374,64 @@
 </main>
 
 <footer class="footer">
-  <img src="assets/logo.png" alt="" width="24" height="24">
-  <p>TabFlick · <a href="mailto:e.gluhtorenko@gmail.com">Contact</a></p>
+  <div class="footer-meta">
+    <img src="assets/logo.png" alt="" width="24" height="24">
+    <p>TabFlick · <a href="mailto:e.gluhtorenko@gmail.com">Contact</a></p>
+  </div>
+  <p class="footer-privacy">This site uses Cloudflare Web Analytics to collect aggregate traffic statistics. It uses no cookies, local storage or individual visitor profiles.</p>
 </footer>
 
 <script>
-  (() => {
+  (async () => {
+    const chromiumStoreURL = "https://chromewebstore.google.com/detail/ocelpfbemnmdjahbajahhbaaljdbhmcc";
+    const firefoxStoreURL = "https://addons.mozilla.org/firefox/addon/tabflick-pro/";
+    const browserOptions = {
+      brave: { name: "Brave", icon: "assets/browsers/brave.svg", url: chromiumStoreURL },
+      chrome: { name: "Chrome", icon: "assets/browsers/chrome.svg", url: chromiumStoreURL },
+      edge: { name: "Edge", icon: "assets/browsers/edge.svg", url: chromiumStoreURL },
+      firefox: { name: "Firefox", icon: "assets/browsers/firefox.svg", url: firefoxStoreURL },
+      safari: { name: "Safari included", icon: "assets/browsers/safari.svg", included: true },
+    };
+
+    const detectBrowser = async () => {
+      const userAgent = navigator.userAgent;
+      const brands = navigator.userAgentData?.brands?.map(({ brand }) => brand) ?? [];
+      const hasBrand = name => brands.includes(name);
+
+      if (/Firefox\//.test(userAgent)) return "firefox";
+      if (hasBrand("Microsoft Edge") || /Edg\//.test(userAgent)) return "edge";
+      if (typeof navigator.brave?.isBrave === "function") {
+        try {
+          if (await navigator.brave.isBrave()) return "brave";
+        } catch {
+          // Fall through to the Chromium identity when Brave withholds its marker.
+        }
+      }
+      if (/Safari\//.test(userAgent) && !/(Chrome|Chromium|CriOS)\//.test(userAgent)) {
+        return "safari";
+      }
+      return "chrome";
+    };
+
+    const browserOption = browserOptions[await detectBrowser()];
+    const browserLink = document.querySelector("[data-browser-extension-link]");
+    const browserIcon = browserLink.querySelector("[data-browser-extension-icon]");
+    const browserName = browserLink.querySelector("[data-browser-extension-name]");
+    browserIcon.src = browserOption.icon;
+    browserName.textContent = browserOption.name;
+
+    if (browserOption.included) {
+      browserLink.removeAttribute("href");
+      browserLink.removeAttribute("target");
+      browserLink.removeAttribute("rel");
+      browserLink.removeAttribute("data-release-link");
+      browserLink.setAttribute("aria-disabled", "true");
+      browserLink.setAttribute("tabindex", "-1");
+      browserLink.classList.add("install-action-included");
+    } else {
+      browserLink.href = browserOption.url;
+    }
+
     const comingSoon = document.body.dataset.launchState === "coming-soon";
     if (comingSoon) {
       document.querySelectorAll("[data-release-link]").forEach(link => {
@@ -463,5 +472,8 @@
   })();
 </script>
 
+<!-- Cloudflare Web Analytics -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"d8c4b052853c4e42a911e8619b37fccf"}'></script>
+<!-- End Cloudflare Web Analytics -->
 </body>
 </html>
