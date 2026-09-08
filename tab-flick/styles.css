@@ -991,6 +991,60 @@ kbd {
   line-height: 1.5;
 }
 
+/* ---------- privacy policy ---------- */
+
+.privacy-main {
+  width: min(100%, 780px);
+  margin: 0 auto;
+  padding: 72px var(--pad) 40px;
+}
+
+.privacy-header {
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.privacy-header h1 {
+  margin-bottom: 14px;
+  font-size: clamp(36px, 6vw, 56px);
+}
+
+.privacy-updated {
+  color: var(--text-faint);
+  font-size: 14px;
+}
+
+.privacy-summary {
+  margin-top: 22px;
+  color: var(--text-dim);
+  font-size: 18px;
+}
+
+.privacy-content {
+  padding-top: 12px;
+}
+
+.privacy-content section {
+  padding-top: 34px;
+}
+
+.privacy-content h2 {
+  margin-bottom: 12px;
+  font-size: 24px;
+}
+
+.privacy-content p {
+  color: var(--text-dim);
+}
+
+.privacy-content p + p {
+  margin-top: 14px;
+}
+
+.privacy-content strong {
+  color: var(--text);
+}
+
 /* ---------- responsive ---------- */
 
 @media (max-width: 760px) {
