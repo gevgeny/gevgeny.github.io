@@ -125,6 +125,9 @@ kbd {
 .hero h1 {
   font-size: clamp(34px, 6.2vw, 62px);
   font-weight: 700;
+  /* Tighter than the 1.2 the headings share: at 62px that leading opens a gap
+     wide enough that the two lines stop reading as one phrase. */
+  line-height: 1.06;
   letter-spacing: -0.035em;
   margin-bottom: 20px;
 }
