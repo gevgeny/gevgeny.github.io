@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TabFlick — a native tab switcher for your browser</title>
-<meta name="description" content="Hold Ctrl+Tab and flick through your recent tabs with live previews. Works in Chrome, Safari, Firefox, Brave, Edge and Arc — across every window, from any app on your Mac.">
+<meta name="description" content="Hold Ctrl+Tab in your browser, or Opt+Tab from any app, and flick through your recent tabs with live previews. Works in Chrome, Safari, Firefox, Brave, Edge and Arc — across every window.">
 <link rel="icon" href="assets/logo.png">
 
 <meta property="og:title" content="TabFlick — a native tab switcher for your browser">
-<meta property="og:description" content="Hold Ctrl+Tab and flick through your recent tabs with live previews. Works in every popular browser, across every window.">
+<meta property="og:description" content="Hold Ctrl+Tab in your browser, or Opt+Tab from any app, and flick through your recent tabs with live previews. Works in every popular browser, across every window.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://e.gluhotorenko.com/tab-flick">
 <meta property="og:image" content="https://e.gluhotorenko.com/tab-flick/assets/social.png">
@@ -51,8 +51,6 @@
   <section class="promo-gallery" aria-label="TabFlick product demos">
     <div class="promo-track" data-promo-track>
       <article class="promo-slide">
-    <!-- The switcher, rebuilt in markup rather than shipped as a screenshot, so the
-         selection can cycle the way it does when you hold the shortcut. -->
         <div class="stage browser-promo">
       <div class="window">
         <div class="window-bar">
@@ -76,47 +74,10 @@
           <!-- The tab you're on; its own thumbnail leads the row below. -->
           <img class="window-page" src="imgs/window-page.jpg" alt="">
 
-          <h2 class="section-title stage-title">Switch tabs in any browser<br>with familiar Ctrl+Tab hotkey</h2>
+          <h2 class="section-title stage-title">Switch tabs in any browser<br>with familiar <kbd>Ctrl</kbd>+<kbd>Tab</kbd> hotkey</h2>
 
-          <div class="overlay">
-            <div class="cards">
-              <figure class="tab-card">
-                <span class="thumb"><img src="imgs/github.png" alt=""></span>
-                <span class="meta"><img class="fav" src="assets/favicons/github.ico" alt=""><span class="title">GitHub</span></span>
-                <span class="tab-action tab-action-close" role="img" aria-label="Close tab"></span>
-              </figure>
-              <figure class="tab-card">
-                <span class="thumb"><img src="imgs/youtube.png" alt=""></span>
-                <span class="meta"><img class="fav" src="assets/favicons/youtube.ico" alt=""><span class="title">YouTube</span></span>
-                <span class="tab-action tab-action-close" role="img" aria-label="Close tab"></span>
-              </figure>
-              <figure class="tab-card">
-                <span class="thumb"><img src="imgs/wikipedia.png" alt=""></span>
-                <span class="meta"><img class="fav" src="assets/favicons/wikipedia.ico" alt=""><span class="title">Wikipedia, the free encyclopedia</span></span>
-                <span class="tab-action tab-action-close" role="img" aria-label="Close tab"></span>
-              </figure>
-              <figure class="tab-card">
-                <span class="thumb"><img src="imgs/tripadvisor.png" alt=""></span>
-                <span class="meta"><img class="fav" src="assets/favicons/tripadvisor.ico" alt=""><span class="title">Tripadvisor: Where to?</span></span>
-                <span class="tab-action tab-action-close" role="img" aria-label="Close tab"></span>
-              </figure>
-              <figure class="tab-card">
-                <span class="thumb"><img src="imgs/bing.png" alt=""></span>
-                <span class="meta"><img class="fav" src="assets/favicons/bing.ico" alt=""><span class="title">Bing</span></span>
-                <span class="tab-action tab-action-close" role="img" aria-label="Close tab"></span>
-              </figure>
-              <figure class="tab-card tab-card-pinned">
-                <span class="thumb"><img src="imgs/linkedin.png" alt=""></span>
-                <span class="meta"><span class="fav fav-linkedin" aria-hidden="true">in</span><span class="title">LinkedIn</span></span>
-                <span class="tab-action tab-action-unpin" role="img" aria-label="Unpin tab">
-                  <svg viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M5 2.5h6l-1.4 2v3L11.5 9v1H8.7v3.5H7.3V10H4.5V9l1.9-1.5v-3L5 2.5Z"/>
-                    <path class="tab-action-slash" d="M3 2.5l10 11"/>
-                  </svg>
-                </span>
-              </figure>
-            </div>
-          </div>
+          <img class="switcher-shot" src="imgs/switcher-shot.png"
+            alt="The TabFlick switcher over a browser page, six recent tabs as live previews with one selected">
         </div>
       </div>
         </div>
@@ -125,126 +86,20 @@
       <article class="promo-slide">
         <div class="stage multi-stage">
       <div class="window desktop-window">
-        <div class="desktop-menu-bar">
-          <div class="desktop-menu-left">
-            <span class="menu-apple" aria-label="Apple">&#63743;</span>
-            <strong>Finder</strong>
-            <span>File</span>
-            <span>Edit</span>
-            <span>View</span>
-            <span>Go</span>
-            <span>Window</span>
-            <span>Help</span>
-          </div>
-          <div class="desktop-menu-right" aria-label="Mac system status">
-            <img class="desktop-menu-icon desktop-wifi-icon" src="imgs/wifi.svg" alt="Wi-Fi">
-            <img class="desktop-menu-icon desktop-volume-icon" src="imgs/volume.png" alt="Volume">
-            <span class="desktop-clock">Tue 21:24</span>
-          </div>
+        <div class="desktop-menu-bar" aria-label="Mac menu bar">
+          <img class="menubar-shot" src="imgs/menubar-left.png" alt="">
+          <span class="menubar-gap"></span>
+          <img class="menubar-shot" src="imgs/menubar-right.png" alt="">
         </div>
         <div class="window-content">
           <img class="window-page desktop-wallpaper" src="imgs/bg_dark.avif" alt="">
 
-          <h2 class="section-title stage-title">Jump straight to the tab you need<br>from anywhere on your Mac</h2>
+          <div class="multi-stack">
+            <h2 class="section-title stage-title">Jump straight to the tab you need<br>from anywhere on your Mac with <kbd>Opt</kbd>+<kbd>Tab</kbd></h2>
 
-          <div class="multi-overlay">
-            <div class="multi-browser-section">
-              <div class="browser-badge">
-                <img src="assets/browsers/safari.svg" alt="">
-                <span>Safari · 24 tabs</span>
-              </div>
-              <div class="multi-strip-panel">
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/github.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/github.ico" alt=""><span class="title">GitHub</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/youtube.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/youtube.ico" alt=""><span class="title">YouTube</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/wikipedia.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/wikipedia.ico" alt=""><span class="title">Wikipedia</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/tripadvisor.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/tripadvisor.ico" alt=""><span class="title">Tripadvisor</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/bing.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/bing.ico" alt=""><span class="title">Bing</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/linkedin.png" alt=""></span>
-                  <span class="meta"><span class="fav fav-linkedin" aria-hidden="true">in</span><span class="title">LinkedIn</span></span>
-                </figure>
-              </div>
-            </div>
-
-            <div class="multi-browser-section">
-              <div class="browser-badge">
-                <img src="assets/browsers/chrome.svg" alt="">
-                <span>Chrome · 47 tabs</span>
-              </div>
-              <div class="multi-strip-panel">
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/linkedin.png" alt=""></span>
-                  <span class="meta"><span class="fav fav-linkedin" aria-hidden="true">in</span><span class="title">LinkedIn</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/facebook.png" alt=""></span>
-                  <span class="meta"><span class="fav fav-facebook" aria-hidden="true">f</span><span class="title">Facebook</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/yahoo.png" alt=""></span>
-                  <span class="meta"><span class="fav fav-yahoo" aria-hidden="true">y!</span><span class="title">Yahoo</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/x.png" alt=""></span>
-                  <span class="meta"><span class="fav fav-x" aria-hidden="true">X</span><span class="title">X</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/github.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/github.ico" alt=""><span class="title">GitHub</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/youtube.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/youtube.ico" alt=""><span class="title">YouTube</span></span>
-                </figure>
-              </div>
-            </div>
-
-            <div class="multi-browser-section">
-              <div class="browser-badge">
-                <img src="assets/browsers/chrome.svg" alt="">
-                <span>Chrome · 18 tabs</span>
-              </div>
-              <div class="multi-strip-panel">
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/tripadvisor.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/tripadvisor.ico" alt=""><span class="title">Tripadvisor</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/github.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/github.ico" alt=""><span class="title">GitHub</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/bing.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/bing.ico" alt=""><span class="title">Bing</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/wikipedia.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/wikipedia.ico" alt=""><span class="title">Wikipedia</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/youtube.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/youtube.ico" alt=""><span class="title">YouTube</span></span>
-                </figure>
-                <figure class="multi-tab">
-                  <span class="thumb"><img src="imgs/linkedin.png" alt=""></span>
-                  <span class="meta"><span class="fav fav-linkedin" aria-hidden="true">in</span><span class="title">LinkedIn</span></span>
-                </figure>
-              </div>
+            <div class="multi-shot-frame">
+              <img class="multi-shot" src="imgs/multi-shot.png"
+                alt="The switcher over the desktop with three strips: two Chrome windows and a Safari window, each labelled with its browser and tab count">
             </div>
           </div>
         </div>
@@ -264,68 +119,42 @@
         </div>
         <div class="window-content">
           <img class="window-page" src="imgs/window-page.jpg" alt="">
-          <span class="experimental-badge">Experimental</span>
+          <span class="experimental-badge">Experimental · Chrome only</span>
 
           <h2 class="section-title stage-title">See and control meetings and playing media in your live tabs</h2>
 
-          <div class="live-overlay">
-            <div class="live-status-row">
-              <div class="live-signal-panel">
-                <img class="live-status-favicon" src="https://meet.google.com/favicon.ico" alt="">
-                <span class="live-status-title">In call</span>
-                <img class="live-control active" src="imgs/microphone.svg" alt="Microphone on">
-                <img class="live-control" src="imgs/video-camera.svg" alt="Camera">
-              </div>
-              <div class="live-signal-panel">
-                <img class="live-status-favicon" src="https://open.spotify.com/favicon.ico" alt="">
-                <span class="live-track">
-                  <strong>Kanapel</strong>
-                  <span>Iva Sativa</span>
-                </span>
-                <img class="live-skip-control live-prev-control" src="imgs/next-track.svg" alt="Previous track">
-                <span class="live-play-toggle" role="img" aria-label="Play or pause">
-                  <img class="live-pause-icon" src="imgs/pause.svg" alt="">
-                  <img class="live-play-icon" src="imgs/play.svg" alt="">
-                </span>
-                <img class="live-skip-control" src="imgs/next-track.svg" alt="Next track">
-              </div>
-            </div>
-
-            <div class="live-strip-panel">
-              <div class="cards">
-                <figure class="tab-card">
-                  <span class="thumb meet-thumb" aria-label="Google Meet preview">
-                    <span></span><span></span><span></span><span></span>
-                  </span>
-                  <span class="meta"><img class="fav" src="https://meet.google.com/favicon.ico" alt=""><span class="title">Team sync — Google Meet</span></span>
-                </figure>
-                <figure class="tab-card">
-                  <span class="thumb"><img src="imgs/spotify.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="https://open.spotify.com/favicon.ico" alt=""><span class="title">Spotify — Web Player</span></span>
-                </figure>
-                <figure class="tab-card">
-                  <span class="thumb"><img src="imgs/youtube.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/youtube.ico" alt=""><span class="title">YouTube</span></span>
-                </figure>
-                <figure class="tab-card">
-                  <span class="thumb"><img src="imgs/github.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/github.ico" alt=""><span class="title">GitHub</span></span>
-                </figure>
-                <figure class="tab-card">
-                  <span class="thumb"><img src="imgs/linkedin.png" alt=""></span>
-                  <span class="meta"><span class="fav fav-linkedin" aria-hidden="true">in</span><span class="title">LinkedIn</span></span>
-                </figure>
-                <figure class="tab-card">
-                  <span class="thumb"><img src="imgs/tripadvisor.png" alt=""></span>
-                  <span class="meta"><img class="fav" src="assets/favicons/tripadvisor.ico" alt=""><span class="title">Tripadvisor</span></span>
-                </figure>
-              </div>
-            </div>
-          </div>
+          <img class="switcher-shot" src="imgs/live-shot.png"
+            alt="The switcher with live tab activity above it: an in-call badge with mic and camera controls, and a Spotify badge with transport controls">
         </div>
       </div>
         </div>
       </article>
+
+      <article class="promo-slide">
+        <div class="stage more-stage">
+          <div class="window more-window">
+            <div class="desktop-menu-bar" aria-label="Mac menu bar">
+              <img class="menubar-shot" src="imgs/menubar-left.png" alt="">
+              <span class="menubar-gap"></span>
+              <img class="menubar-shot" src="imgs/menubar-right.png" alt="">
+            </div>
+            <div class="window-content">
+              <img class="window-page desktop-wallpaper" src="imgs/bg_dark.avif" alt="">
+
+              <div class="more-heading">
+                <h2 class="section-title stage-title">Lives in the menu bar.<br>Make it yours.</h2>
+                <p class="stage-sub">Rebind the shortcuts, pick your accent, choose how many tabs. And more…</p>
+              </div>
+
+              <img class="more-shot more-shot-settings" src="imgs/app-settings.png"
+                alt="TabFlick Settings: launch at login, instant switching, live tab activity, tabs shown, accent colour and both shortcuts">
+              <img class="more-shot more-shot-menu" src="imgs/app-menu.png"
+                alt="TabFlick menu bar: connected browsers, open the switcher, connect more browsers, settings">
+            </div>
+          </div>
+        </div>
+      </article>
+
     </div>
     <div class="promo-controls" aria-label="Promo navigation">
       <button class="promo-control promo-control-previous" type="button" data-promo-prev aria-label="Previous promo">
@@ -340,33 +169,20 @@
   <section id="get" class="get">
     <h2 class="section-title">Get <span class="brand-accent">TabFlick</span> for Mac</h2>
     <p class="get-lede">
-      Start with the native Mac app. Safari support is included.
+      Install the Mac app. Safari support is built in, and it walks you through
+      connecting your other browsers.
     </p>
 
     <div class="install-panel">
       <div class="install-row">
         <span class="install-copy">
-          <span class="install-step">1 · Native app</span>
+          <span class="install-step">Native app</span>
           <span class="install-note">macOS 13 or later</span>
         </span>
-        <a class="install-action" href="#" data-store="setapp">
-          <img class="install-action-icon" src="imgs/setapp.svg" alt="">
-          <strong>Coming soon to Setapp</strong>
-          <img class="setapp-chevron" src="imgs/chevron_right.svg" alt="">
+        <a class="install-action" href="#" data-store="appstore" data-release-link>
+          <strong>Coming soon to the Mac App Store</strong>
+          <img class="install-chevron" src="imgs/chevron_right.svg" alt="">
         </a>
-      </div>
-
-      <div class="install-row">
-        <span class="install-copy">
-          <span class="install-step">2 · Optional browser extensions</span>
-          <span class="install-note">If you want TabFlick to work with browsers other than Safari.</span>
-        </span>
-        <div class="install-actions">
-          <a class="install-action" href="https://chromewebstore.google.com/detail/ocelpfbemnmdjahbajahhbaaljdbhmcc" target="_blank" rel="noopener" data-browser-extension-link data-release-link>
-            <img src="assets/browsers/chrome.svg" alt="" data-browser-extension-icon>
-            <span data-browser-extension-name>Chrome</span>
-          </a>
-        </div>
       </div>
     </div>
   </section>
@@ -383,55 +199,6 @@
 
 <script>
   (async () => {
-    const chromiumStoreURL = "https://chromewebstore.google.com/detail/ocelpfbemnmdjahbajahhbaaljdbhmcc";
-    const firefoxStoreURL = "https://addons.mozilla.org/firefox/addon/tabflick-pro/";
-    const browserOptions = {
-      brave: { name: "Brave", icon: "assets/browsers/brave.svg", url: chromiumStoreURL },
-      chrome: { name: "Chrome", icon: "assets/browsers/chrome.svg", url: chromiumStoreURL },
-      edge: { name: "Edge", icon: "assets/browsers/edge.svg", url: chromiumStoreURL },
-      firefox: { name: "Firefox", icon: "assets/browsers/firefox.svg", url: firefoxStoreURL },
-      safari: { name: "Safari included", icon: "assets/browsers/safari.svg", included: true },
-    };
-
-    const detectBrowser = async () => {
-      const userAgent = navigator.userAgent;
-      const brands = navigator.userAgentData?.brands?.map(({ brand }) => brand) ?? [];
-      const hasBrand = name => brands.includes(name);
-
-      if (/Firefox\//.test(userAgent)) return "firefox";
-      if (hasBrand("Microsoft Edge") || /Edg\//.test(userAgent)) return "edge";
-      if (typeof navigator.brave?.isBrave === "function") {
-        try {
-          if (await navigator.brave.isBrave()) return "brave";
-        } catch {
-          // Fall through to the Chromium identity when Brave withholds its marker.
-        }
-      }
-      if (/Safari\//.test(userAgent) && !/(Chrome|Chromium|CriOS)\//.test(userAgent)) {
-        return "safari";
-      }
-      return "chrome";
-    };
-
-    const browserOption = browserOptions[await detectBrowser()];
-    const browserLink = document.querySelector("[data-browser-extension-link]");
-    const browserIcon = browserLink.querySelector("[data-browser-extension-icon]");
-    const browserName = browserLink.querySelector("[data-browser-extension-name]");
-    browserIcon.src = browserOption.icon;
-    browserName.textContent = browserOption.name;
-
-    if (browserOption.included) {
-      browserLink.removeAttribute("href");
-      browserLink.removeAttribute("target");
-      browserLink.removeAttribute("rel");
-      browserLink.removeAttribute("data-release-link");
-      browserLink.setAttribute("aria-disabled", "true");
-      browserLink.setAttribute("tabindex", "-1");
-      browserLink.classList.add("install-action-included");
-    } else {
-      browserLink.href = browserOption.url;
-    }
-
     const comingSoon = document.body.dataset.launchState === "coming-soon";
     if (comingSoon) {
       document.querySelectorAll("[data-release-link]").forEach(link => {

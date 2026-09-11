@@ -28,6 +28,9 @@
   --maxw: 1060px;
   --pad: 24px;
   --promo-titlebar-height: 36px;
+  /* The bar is a screenshot now, cropped at 60px for a 2x display — so 30px is
+     its native size, and anything else resamples it. */
+  --promo-menubar-height: 30px;
 }
 
 * { box-sizing: border-box; }
@@ -64,12 +67,15 @@ kbd {
   display: inline-block;
   min-width: 1.6em;
   padding: 1px 6px;
-  border: 1px solid var(--border-strong);
+  /* Tinted from the surrounding text rather than a fixed colour: the stage
+     headings sit on a dark desktop shot and on a pale gradient, and a cap keyed
+     to white disappears on the light one. */
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
   border-bottom-width: 2px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.07);
+  background: color-mix(in srgb, currentColor 12%, transparent);
   font: 600 0.85em/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
-  color: var(--text);
+  color: inherit;
   text-align: center;
 }
 
@@ -258,12 +264,13 @@ kbd {
 
 /* ---------- promo windows ---------- */
 
-/* Card geometry mirrors the app while leaving the surrounding browser page visible.
-   Six cards occupy 864px, plus 16px of panel padding, inside the 1012px hero. */
+/* Card geometry is the app's own: a 140px card, a 90px thumbnail and a 20px gap
+   split as padding either side, so a card occupies 160px and six of them 960px
+   inside the 1012px hero. */
 .stage {
-  --card-w: 144px;
-  --thumb-h: 87px;
-  --gap: 16px;
+  --card-w: 140px;
+  --thumb-h: 90px;
+  --gap: 20px;
   --window-page-h: 560px;
   margin-top: 72px;
 }
@@ -356,6 +363,67 @@ kbd {
 }
 .desktop-wallpaper { object-fit: cover; }
 
+/* A capture of the real switcher, centred over the page the way it appears. */
+.switcher-shot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: min(92%, 1012px);
+  height: auto;
+  transform: translate(-50%, -50%);
+}
+/* Title and shot in one column so the gap between them is exactly that — the
+   title's height rides on a clamp() font size, so no fixed offset holds at every
+   width. The stack owns the space below the window's top inset; the frame takes
+   whatever the title leaves. */
+.multi-stack {
+  --multi-top: 28px;
+  position: absolute;
+  top: var(--multi-top);
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  height: calc(var(--window-page-h) - var(--multi-top));
+  transform: translateX(-50%);
+}
+.multi-stack .stage-title {
+  position: static;
+  transform: none;
+}
+
+/* Three stacked strips run taller than the window. The frame is the visible area,
+   so its bottom edge is the window's — masking it there fades the shot out where
+   it gets cut. Masking the image instead fades its own bottom, which is off-screen
+   and clipped away unseen. */
+.multi-shot-frame {
+  --multi-fade-height: 120px;
+  flex: 1;
+  min-height: 0;
+  width: min(88%, 940px);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0,
+    #000 calc(100% - var(--multi-fade-height)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0,
+    #000 calc(100% - var(--multi-fade-height)),
+    transparent 100%
+  );
+}
+.multi-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* Frosted HUD panel — same recipe as FrostedPanel.swift (blur + accent tint) —
    floating over the page, the way the real overlay sits above the browser. */
 .overlay {
@@ -364,6 +432,9 @@ kbd {
   top: 50%;
   transform: translate(-50%, -50%);
   padding: calc(var(--gap) / 2);
+  /* The card carries its own half-gap under the title, so a full gutter here
+     leaves the strip looking bottom-heavy. */
+  padding-bottom: 4px;
   border: 1px solid var(--hud-border);
   border-radius: 20px;
   background: var(--hud-panel-bg);
@@ -376,7 +447,9 @@ kbd {
 
 .tab-card {
   position: relative;
-  flex: 0 0 var(--card-w);
+  /* The gutter rides inside the basis: with border-box, padding would otherwise
+     come out of the card's own width and squash the thumbnail's proportions. */
+  flex: 0 0 calc(var(--card-w) + var(--gap));
   /* min-width:auto would let a long title push the card past its basis, so the
      row would come out ragged. */
   min-width: 0;
@@ -455,7 +528,7 @@ kbd {
   transition: box-shadow 0.18s ease;
 }
 
-.meta { display: flex; align-items: center; gap: 7px; margin-top: 9px; min-width: 0; }
+.meta { display: flex; align-items: center; gap: 4px; margin-top: 6px; min-width: 0; }
 /* Each site's own favicon, vendored so the page still makes no outside requests. */
 .fav {
   width: 14px;
@@ -492,7 +565,7 @@ kbd {
   min-width: 0;  /* let the flex item shrink so the ellipsis can apply */
   overflow: hidden;
   color: #fff;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.4;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -517,7 +590,7 @@ kbd {
 
 @keyframes card-lift {
   0%, 100% { transform: scale(1); filter: var(--card-resting-shadow); }
-  2.5%, 14.167% { transform: scale(1.08); filter: var(--card-selected-shadow); }
+  2.5%, 14.167% { transform: scale(1.12); filter: var(--card-selected-shadow); }
   16.667% { transform: scale(1); filter: var(--card-resting-shadow); }
 }
 @keyframes card-ring {
@@ -536,45 +609,102 @@ kbd {
   border-radius: var(--promo-window-radius);
   background: #c9d0d0;
 }
+/* Two crops of the real menu bar rather than a rebuild: the browser can't match
+   AppKit's text rasterization, so a recreation always reads slightly wrong. The
+   crops don't reach across the window, so the fill between them is sampled from
+   their own background and the seam disappears. */
 .desktop-menu-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  min-height: var(--promo-titlebar-height);
-  padding: 0 15px;
-  background: rgba(239, 236, 230, 0.92);
+  height: var(--promo-menubar-height);
+  background: #efeee4;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
-  color: rgba(10, 10, 10, 0.93);
-  font-size: 13px;
-  line-height: 1;
 }
-.desktop-menu-left,
-.desktop-menu-right {
-  display: flex;
-  align-items: center;
-}
-.desktop-menu-left { gap: 22px; }
-.desktop-menu-left strong { font-weight: 720; }
-.menu-apple {
-  margin-right: 1px;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 20px;
-}
-.desktop-menu-right { gap: 14px; }
-.desktop-menu-icon {
+.menubar-shot {
   display: block;
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-  opacity: 0.88;
+  height: 100%;
+  width: auto;  /* 2x crops: height drives the scale, so they stay crisp */
 }
-.desktop-wifi-icon { width: 19px; }
-.desktop-volume-icon { width: 20px; }
-.desktop-clock {
-  min-width: 65px;
-  font-size: 12px;
-  font-weight: 550;
-  text-align: right;
+/* Bridges the two crops and holds them apart. The real bar is translucent and
+   drifts across the wallpaper behind it, so the join carries that drift rather
+   than a flat patch — and being its own box, the gradient spans the gap exactly
+   however wide the window gets. */
+.menubar-gap {
+  flex: 1;
+  align-self: stretch;
+  background: linear-gradient(90deg, #eae8e0, #e0ddd5);
+}
+
+/* ---------- promo: the rest of the app ---------- */
+
+.more-stage {
+  --window-page-h: 600px;
+  margin-top: 0;
+}
+.more-window {
+  border-radius: var(--promo-window-radius);
+  background: #0d0f14;
+}
+/* Distance from the bar's right edge to the left edge of the TabFlick icon in
+   the status crop — the menu drops from there, the way it does when clicked. */
+.more-stage {
+  --menu-w: 205px;
+  --menu-icon-left: 254px;
+}
+/* Settings is a tall portrait window, so it takes the left and the words take the
+   column beside it — ranged left, since centred text in a narrow column combs
+   into ragged edges on both sides. */
+.more-heading {
+  position: absolute;
+  top: 52%;
+  left: auto;
+  right: 44px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  width: min(42%, 430px);
+  transform: translateY(-50%);
+}
+.more-heading .stage-title {
+  position: static;
+  width: auto;
+  transform: none;
+  color: rgba(255, 255, 255, 0.92);
+  text-align: left;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.42);
+}
+.stage-sub {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: left;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
+}
+
+/* Settings sits square-on with the menu overlapping its lower corner, the way
+   they land when both are open — rather than two screenshots side by side. */
+/* The screenshots are cropped to the window edge with no shadow baked in, so the
+   lift is drawn here — and follows the window's own rounding rather than a box. */
+.more-shot {
+  position: absolute;
+  display: block;
+  filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.55));
+}
+.more-shot-settings {
+  top: 50%;
+  left: 46px;
+  width: auto;
+  height: 88%;
+  transform: translateY(-50%);
+}
+/* Top-left corner on the menu-bar icon, opening down and to the right. */
+.more-shot-menu {
+  top: 8px;
+  right: 30px;
+  width: var(--menu-w);
+  height: auto;
 }
 
 .multi-stage .stage-title {
@@ -583,126 +713,6 @@ kbd {
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.42);
 }
 
-.multi-overlay {
-  --multi-top: 124px;
-  --multi-shadow-room: 24px;
-  --multi-card-w: var(--card-w);
-  --multi-thumb-h: var(--thumb-h);
-  --multi-step: 0.8s;
-  --multi-cycle: 14.4s;
-  --multi-fade-height: 120px;
-  position: absolute;
-  top: var(--multi-top);
-  left: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: calc(var(--window-page-h) - var(--multi-top));
-  overflow: hidden;
-  gap: 12px;
-  padding-inline: var(--multi-shadow-room);
-  transform: translateX(-50%);
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    #000 0,
-    #000 calc(100% - var(--multi-fade-height)),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    #000 0,
-    #000 calc(100% - var(--multi-fade-height)),
-    transparent 100%
-  );
-}
-
-.multi-browser-section {
-  flex: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  --strip-delay: 0s;
-}
-.multi-browser-section:nth-child(2) { --strip-delay: calc(var(--multi-step) * 6); }
-.multi-browser-section:nth-child(3) { --strip-delay: calc(var(--multi-step) * 12); }
-
-.browser-badge {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 11px;
-  border: 1px solid var(--hud-border);
-  border-radius: 12px;
-  background: var(--hud-panel-bg);
-  -webkit-backdrop-filter: var(--hud-filter);
-  backdrop-filter: var(--hud-filter);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1;
-}
-.browser-badge img {
-  width: 16px;
-  height: 16px;
-}
-
-.multi-strip-panel {
-  display: flex;
-  gap: 0;
-  padding: 8px;
-  border: 1px solid var(--hud-border);
-  border-radius: 16px;
-  background: var(--hud-panel-bg);
-  -webkit-backdrop-filter: var(--hud-filter);
-  backdrop-filter: var(--hud-filter);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
-}
-
-.multi-tab {
-  --card-delay: 0s;
-  flex: 0 0 var(--multi-card-w);
-  width: var(--multi-card-w);
-  min-width: 0;
-  margin: 0;
-  padding: calc(var(--gap) / 2);
-  animation: multi-card-lift var(--multi-cycle)
-    calc(var(--strip-delay) + var(--card-delay)) infinite ease-out;
-}
-.multi-tab:nth-child(2) { --card-delay: var(--multi-step); }
-.multi-tab:nth-child(3) { --card-delay: calc(var(--multi-step) * 2); }
-.multi-tab:nth-child(4) { --card-delay: calc(var(--multi-step) * 3); }
-.multi-tab:nth-child(5) { --card-delay: calc(var(--multi-step) * 4); }
-.multi-tab:nth-child(6) { --card-delay: calc(var(--multi-step) * 5); }
-
-.multi-tab .thumb { height: var(--multi-thumb-h); }
-.multi-tab .thumb::after {
-  animation: multi-card-ring var(--multi-cycle)
-    calc(var(--strip-delay) + var(--card-delay)) infinite ease-out;
-}
-.multi-tab .meta {
-  gap: 4px;
-  margin-top: 5px;
-}
-.multi-tab .fav {
-  width: 12px;
-  height: 12px;
-}
-.multi-tab .title {
-  font-size: 12px;
-}
-
-@keyframes multi-card-lift {
-  0%, 100% { transform: scale(1); filter: var(--card-resting-shadow); }
-  1.25%, 4.306% { transform: scale(1.08); filter: var(--card-selected-shadow); }
-  5.556% { transform: scale(1); filter: var(--card-resting-shadow); }
-}
-@keyframes multi-card-ring {
-  0%, 100% { box-shadow: inset 0 0 0 2px transparent, inset 0 0 0 4px transparent; }
-  1.25%, 4.306% { box-shadow: inset 0 0 0 2px var(--accent), inset 0 0 0 4px rgba(0, 0, 0, 0.55); }
-  5.556% { box-shadow: inset 0 0 0 2px transparent, inset 0 0 0 4px transparent; }
-}
 /* ---------- live-status promo ---------- */
 
 .live-stage {
@@ -741,115 +751,6 @@ kbd {
   width: 18px;
   height: 18px;
 }
-.live-overlay {
-  position: absolute;
-  top: 54%;
-  left: 50%;
-  width: calc((var(--card-w) * 6) + var(--gap) + 2px);
-  transform: translate(-50%, -50%);
-}
-.live-status-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 6px;
-}
-.live-signal-panel {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 34px;
-  padding: 7px 11px;
-  border: 1px solid var(--hud-border);
-  border-radius: 12px;
-  background: var(--hud-panel-bg);
-  -webkit-backdrop-filter: var(--hud-filter);
-  backdrop-filter: var(--hud-filter);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 12px;
-  line-height: 1;
-}
-.live-status-favicon {
-  display: block;
-  width: 14px;
-  height: 14px;
-  flex: none;
-  object-fit: contain;
-}
-.live-status-title { font-weight: 600; }
-.live-track {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  white-space: nowrap;
-}
-.live-track strong { font-weight: 600; }
-.live-track span { color: rgba(255, 255, 255, 0.6); }
-.live-control {
-  display: block;
-  width: 18px;
-  height: 18px;
-  flex: none;
-  object-fit: contain;
-  opacity: 0.5;
-}
-.live-control.active { opacity: 1; }
-.live-skip-control {
-  display: block;
-  width: 18px;
-  height: 18px;
-  flex: none;
-  object-fit: contain;
-  opacity: 0.5;
-}
-.live-prev-control { transform: scaleX(-1); }
-.live-play-toggle {
-  position: relative;
-  display: block;
-  width: 18px;
-  height: 18px;
-  flex: none;
-}
-.live-play-toggle img {
-  position: absolute;
-  inset: 0;
-  width: 18px;
-  height: 18px;
-  animation: live-play-state 6s infinite;
-}
-.live-play-icon {
-  opacity: 0;
-  animation-delay: 3s !important;
-}
-@keyframes live-play-state {
-  0%, 45% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-.live-strip-panel {
-  padding: calc(var(--gap) / 2);
-  border: 1px solid var(--hud-border);
-  border-radius: 20px;
-  background: var(--hud-panel-bg);
-  -webkit-backdrop-filter: var(--hud-filter);
-  backdrop-filter: var(--hud-filter);
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5);
-}
-.meet-thumb {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3px;
-  padding: 4px;
-  background: #202124;
-}
-.meet-thumb > span {
-  border-radius: 4px;
-  background:
-    radial-gradient(circle at 50% 38%, #c8d1dc 0 12%, transparent 13%),
-    radial-gradient(ellipse at 50% 100%, #66717f 0 35%, transparent 36%),
-    linear-gradient(145deg, #36404b, #252b32);
-}
-
 /* ---------- sections ---------- */
 
 .get {
@@ -951,7 +852,7 @@ kbd {
   color: var(--text);
   font-weight: 650;
 }
-.setapp-chevron {
+.install-chevron {
   opacity: 0.9;
 }
 
@@ -1064,31 +965,6 @@ kbd {
   .desktop-menu-bar {
     display: none;
   }
-  .browser-promo .overlay,
-  .live-overlay {
-    left: var(--promo-mobile-content-inset);
-    transform: translateY(-50%);
-  }
-  .browser-promo .overlay,
-  .multi-strip-panel,
-  .live-strip-panel {
-    -webkit-mask-image: linear-gradient(
-      to right,
-      #000 0,
-      #000 calc(var(--promo-mobile-visible-width) - var(--promo-mobile-fade-width)),
-      transparent var(--promo-mobile-visible-width)
-    );
-    mask-image: linear-gradient(
-      to right,
-      #000 0,
-      #000 calc(var(--promo-mobile-visible-width) - var(--promo-mobile-fade-width)),
-      transparent var(--promo-mobile-visible-width)
-    );
-  }
-  .multi-overlay {
-    left: calc(var(--promo-mobile-content-inset) - var(--multi-shadow-room));
-    transform: none;
-  }
   .nav-links { display: none; }
   .install-row {
     grid-template-columns: 1fr;
@@ -1108,27 +984,16 @@ kbd {
   .promo-track { scroll-behavior: auto; }
   .browser-identity-item { animation: none; }
   .browser-identity-item:first-child { opacity: 1; }
-  .live-play-toggle img { animation: none; }
-  .live-pause-icon { opacity: 1; }
-  .live-play-icon { opacity: 0; }
   html { scroll-behavior: auto; }
   .btn:hover { transform: none; }
 
   /* No cycling — show the switcher in its resting state, first card selected. */
   .tab-card, .tab-card * { animation: none !important; }
   .tab-card:first-child {
-    transform: scale(1.08);
+    transform: scale(1.12);
     filter: var(--card-selected-shadow);
   }
   .tab-card:first-child .thumb::after {
-    box-shadow: inset 0 0 0 2px var(--accent), inset 0 0 0 4px rgba(0, 0, 0, 0.55);
-  }
-  .multi-tab, .multi-tab * { animation: none !important; }
-  .multi-browser-section:first-child .multi-tab:first-child {
-    transform: scale(1.08);
-    filter: var(--card-selected-shadow);
-  }
-  .multi-browser-section:first-child .multi-tab:first-child .thumb::after {
     box-shadow: inset 0 0 0 2px var(--accent), inset 0 0 0 4px rgba(0, 0, 0, 0.55);
   }
 }
