@@ -1,0 +1,436 @@
+<!doctype html>
+<!--
+  Mac App Store screenshots. Each .shot is one screenshot at 1440×900 CSS px;
+  captured at 2× it is exactly 2880×1800, an accepted Mac size. Built from the
+  site's promo images, so a headline or an image is a one-line change.
+
+  Export (from the repo root):
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+      --hide-scrollbars --window-size=1440,900 --force-device-scale-factor=2 \
+      --screenshot=shot-1.png "file://$PWD/site/appstore/screenshots.html#1"
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TabFlick — App Store screenshots</title>
+<style>
+  :root {
+    --bg: #0d0f14;
+    --text: #eceef4;
+    --text-dim: #9aa0b0;
+    --accent: #7aa2ff;
+    --shot-w: 1440px;
+    --shot-h: 900px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* One screenshot. With #n in the URL only that one shows, at the top-left,
+     so a 1440×900 headless capture frames it exactly. */
+  .shot {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: var(--shot-w);
+    height: var(--shot-h);
+    overflow: hidden;
+    margin-bottom: 40px;
+    color: var(--text);
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(1100px 620px at 50% -220px, rgba(122, 162, 255, 0.38), transparent 70%),
+      radial-gradient(700px 460px at 95% 8%, rgba(122, 162, 255, 0.18), transparent 65%);
+  }
+  body.single .shot { display: none; margin: 0; }
+  body.single .shot.current { display: flex; }
+
+  .headline {
+    margin: 60px 0 0;
+    font-size: 62px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    text-align: center;
+  }
+
+  .subline {
+    margin: 18px 0 0;
+    color: var(--text-dim);
+    font-size: 27px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  /* Every browser TabFlick supports (BrowserCatalog.supported), as the apps'
+     own Dock icons so the set reads as one family. */
+  .browsers {
+    display: flex;
+    gap: 18px;
+    margin: 22px 0 0;
+  }
+  .browsers img { width: 48px; height: 48px; }
+
+  kbd {
+    display: inline-block;
+    min-width: 1.6em;
+    padding: 0 9px;
+    border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+    border-bottom-width: 3px;
+    border-radius: 8px;
+    background: color-mix(in srgb, currentColor 12%, transparent);
+    color: var(--text);
+    font: 600 0.9em/1.45 -apple-system, BlinkMacSystemFont, sans-serif;
+    text-align: center;
+  }
+
+  /* A browser window — title bar with an address bar — running off the bottom
+     of the shot, the switcher over it. */
+  .window {
+    position: relative;
+    flex-shrink: 0;
+    width: 1120px;
+    margin-top: 50px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    /* Lighter than the shot behind it, so the title bar stands apart. */
+    background: linear-gradient(180deg, #333947, #2a2f3b);
+    box-shadow: 0 40px 110px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(122, 162, 255, 0.10);
+  }
+  .window-bar {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    height: 44px;
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .dot { flex-shrink: 0; width: 12px; height: 12px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+  .nav {
+    display: flex;
+    gap: 18px;
+    margin-left: 26px;
+    color: var(--text-dim);
+  }
+  .nav svg { width: 16px; height: 16px; }
+  .nav .off { opacity: 0.4; }
+  .address {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 520px;
+    height: 28px;
+    margin: 0 auto;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.10);
+    color: var(--text);
+    font-size: 14px;
+  }
+  .address svg { width: 12px; height: 12px; color: var(--text-dim); }
+  .address .path { color: var(--text-dim); }
+  /* Balances the traffic lights and arrows so the address bar sits centred. */
+  .bar-end { width: 150px; }
+  /* A blank new-tab page — a faint search field above the switcher, a row of
+     empty shortcut tiles below it — so the page says "browser" without
+     pulling focus from the switcher. */
+  .new-tab {
+    position: absolute;
+    inset: 0;
+    background: #1f222a;
+  }
+  .new-tab-search {
+    position: absolute;
+    left: 50%;
+    top: 58px;
+    width: 460px;
+    height: 40px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateX(-50%);
+  }
+  .new-tab-tiles {
+    position: absolute;
+    left: 50%;
+    top: 430px;
+    display: flex;
+    gap: 34px;
+    transform: translateX(-50%);
+  }
+  .new-tab-tiles span {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .window-content {
+    position: relative;
+    overflow: hidden;
+    height: 640px;
+    background:
+      radial-gradient(520px 380px at 12% 18%, rgba(122, 162, 255, 0.45), transparent 70%),
+      radial-gradient(560px 420px at 88% 30%, rgba(255, 170, 200, 0.40), transparent 70%),
+      radial-gradient(640px 420px at 50% 95%, rgba(140, 230, 210, 0.40), transparent 70%),
+      #f4f6fb;
+  }
+  /* A Mac desktop — the site's wallpaper and menu-bar crops — for the switcher
+     opened over any app. */
+  .shot.desktop {
+    background: url(../imgs/bg_dark.avif) center / cover;
+  }
+  /* A dark green desktop with one teal glow top-left, to sit with the green
+     accent of the capture on it. */
+  .shot.desktop.green {
+    background:
+      radial-gradient(900px 640px at 0% 12%, rgba(28, 150, 120, 0.38), transparent 70%),
+      linear-gradient(160deg, #0c1a17 0%, #080f0d 55%, #09110c 100%);
+  }
+  /* Calm teal-blue for the setup slide. */
+  .shot.teal {
+    background:
+      radial-gradient(900px 640px at 100% 10%, rgba(40, 170, 200, 0.34), transparent 70%),
+      radial-gradient(800px 520px at 0% 100%, rgba(80, 120, 255, 0.24), transparent 70%),
+      linear-gradient(160deg, #0b1a22 0%, #0a1118 55%, #0c1220 100%);
+  }
+  /* Rose glows to sit with the pink accent of the 16-tab capture. */
+  .shot.rose {
+    background:
+      radial-gradient(900px 620px at 0% 8%, rgba(255, 138, 212, 0.30), transparent 70%),
+      radial-gradient(800px 520px at 100% 100%, rgba(150, 90, 255, 0.22), transparent 70%),
+      linear-gradient(160deg, #1a0e18 0%, #110b12 55%, #120c18 100%);
+  }
+  /* Warm amber glows to sit with the yellow accent of the activity capture. */
+  .shot.amber {
+    background:
+      radial-gradient(900px 620px at 0% 8%, rgba(255, 196, 60, 0.30), transparent 70%),
+      radial-gradient(800px 520px at 100% 100%, rgba(255, 140, 50, 0.20), transparent 70%),
+      linear-gradient(160deg, #1a150b 0%, #110f0a 55%, #15100a 100%);
+  }
+  /* bg_dark redrawn as gradients — teal-blue top-left, navy middle, magenta
+     bottom-right — so it renders crisp at any size and tunes like the others. */
+  .shot.desktop.dusk {
+    background:
+      radial-gradient(1000px 700px at 0% 10%, rgba(10, 110, 160, 0.85), transparent 70%),
+      radial-gradient(900px 520px at 75% 110%, rgba(150, 30, 90, 0.65), transparent 70%),
+      linear-gradient(160deg, #0a3550 0%, #0a1a42 45%, #10133a 70%, #1e1236 100%);
+  }
+  .menu-bar {
+    display: flex;
+    align-self: stretch;
+    height: 30px;
+    background: #efeee4;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+  }
+  .menu-bar img { height: 100%; }
+  /* Bridges the two crops, carrying the bar's drift across the wallpaper. */
+  .menu-gap {
+    flex: 1;
+    /* From where the left crop ends to where the right one starts. */
+    background: linear-gradient(90deg, #efece6, #e0dfd9);
+  }
+  /* The strips run past the bottom of the shot, so the frame is the visible
+     area and the fade sits on its bottom edge, where the shot gets cut — the
+     site's multi-browser promo does the same. */
+  .global-frame {
+    --fade-height: 170px;
+    flex: 1;
+    min-height: 0;
+    width: 1380px;
+    margin-top: 30px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      to bottom, #000 calc(100% - var(--fade-height)), transparent 100%);
+    mask-image: linear-gradient(
+      to bottom, #000 calc(100% - var(--fade-height)), transparent 100%);
+  }
+  .global-frame img { display: block; width: 100%; }
+  /* Settings large on the left; the copy on the right, under the menu that
+     drops from its icon at the top right. */
+  .side-copy {
+    position: absolute;
+    left: 830px;
+    top: 380px;
+    width: 540px;
+  }
+  .side-copy .headline,
+  .side-copy .subline {
+    margin-top: 0;
+    text-align: left;
+  }
+  .side-copy .subline { margin-top: 20px; line-height: 1.4; }
+  .side-copy.on-left { left: 96px; width: 640px; }
+  /* A browser's icon just ahead of its name, centred on the text. */
+  .inline-icon {
+    width: 1.15em;
+    height: 1.15em;
+    margin-right: 0.25em;
+    vertical-align: -0.22em;
+  }
+  /* Mirrors slide 5: the window on the right, its shadow margin (~11% each
+     side, ~6% above) putting the window itself 90px from the right edge,
+     centred top to bottom. */
+  .connect-shot {
+    position: absolute;
+    right: 20px;
+    top: 83px;
+    height: 780px;
+  }
+  /* On the left, centred in the space below the menu bar. The capture's shadow
+     margin (~9% each side, ~5% above) puts the window itself at x 90. */
+  .settings-shot {
+    position: absolute;
+    left: 29px;
+    top: 85px;
+    height: 800px;
+  }
+  /* Drops from the TabFlick icon in menubar-right.png, left edges lined up as
+     macOS does. The capture's transparent margin (~23px) holds its shadow, so
+     the image starts that far left of the menu itself. */
+  .menu-shot {
+    position: absolute;
+    left: 1084px;
+    top: 15px;
+    width: 296px;
+  }
+  /* No window or desktop: slide 1 already set the scene, so the switcher alone
+     fills the room below the copy, as large as it reads. */
+  .free-stage {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .free-stage .wide { width: 1340px; }
+  /* Six cards rather than sixteen, so it can run nearly edge to edge and keep
+     the badges readable. */
+  .free-stage .wider { width: 1420px; }
+  .switcher-shot {
+    position: absolute;
+    left: 50%;
+    /* The middle of the part left on screen, not of the whole window. */
+    top: 42%;
+    width: 94%;
+    transform: translate(-50%, -50%);
+    /* Lifts the switcher off the page; the capture's own shadow is too soft
+       to do it over a photo. */
+    filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.55));
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 — the switcher in the browser -->
+<section class="shot" id="shot-1">
+  <h1 class="headline">Switch browser tabs like you switch apps</h1>
+  <p class="subline">Hold <kbd>⌃</kbd> and tap <kbd>Tab</kbd> for your recent tabs, with live previews</p>
+  <div class="browsers">
+    <img src="browsers/chrome.png" alt="Chrome">
+    <img src="browsers/safari.png" alt="Safari">
+    <img src="browsers/firefox.png" alt="Firefox">
+    <img src="browsers/edge.png" alt="Edge">
+    <img src="browsers/brave.png" alt="Brave">
+    <img src="browsers/opera.png" alt="Opera">
+  </div>
+  <div class="window">
+    <div class="window-bar">
+      <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+      <div class="nav">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 5 8l5 5"/></svg>
+        <svg class="off" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3 5 5-5 5"/></svg>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M13 8a5 5 0 1 1-1.6-3.7"/><path d="M13 2.5V5h-2.5"/></svg>
+      </div>
+      <div class="address">
+        <span class="path">Search or enter website name</span>
+      </div>
+      <div class="bar-end"></div>
+    </div>
+    <div class="window-content">
+      <div class="new-tab">
+        <div class="new-tab-search"></div>
+        <div class="new-tab-tiles">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <img class="switcher-shot" src="shots/switcher.png" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- 2 — every browser from any app -->
+<section class="shot desktop green" id="shot-2">
+  <div class="menu-bar">
+    <img src="../imgs/menubar-left.avif" alt="">
+    <span class="menu-gap"></span>
+    <img src="menubar-right.png" alt="">
+  </div>
+  <h1 class="headline">Your browsers’ recent tabs<br>together, from anywhere</h1>
+  <p class="subline">Hold <kbd>⌥</kbd> and tap <kbd>Tab</kbd> in any app to switch tabs across your connected browsers</p>
+  <div class="global-frame"><img src="shots/global.png" alt=""></div>
+</section>
+
+<!-- 3 — tab activity: unread messages and sound -->
+<section class="shot amber" id="shot-3">
+  <h1 class="headline">Never miss a message</h1>
+  <p class="subline">Spot unread Gmail, WhatsApp and Discord tabs, or the one playing music,<br>and jump straight to it</p>
+  <div class="free-stage"><img class="wider" src="shots/activity.png" alt=""></div>
+</section>
+
+<!-- 4 — more tabs, closed from the switcher -->
+<section class="shot rose" id="shot-4">
+  <h1 class="headline">See all your recent tabs at once</h1>
+  <p class="subline">More tabs at a glance, and one click to close the ones you're done with</p>
+  <div class="free-stage"><img class="wide" src="shots/switcher-16.png" alt=""></div>
+</section>
+
+<!-- 5 — settings, from the menu bar -->
+<section class="shot desktop dusk" id="shot-5">
+  <div class="menu-bar">
+    <img src="../imgs/menubar-left.avif" alt="">
+    <span class="menu-gap"></span>
+    <img src="menubar-right.png" alt="">
+  </div>
+  <div class="side-copy">
+    <h1 class="headline">Make it yours</h1>
+    <p class="subline">Pick your shortcuts, accent color and how many tabs to show, all from the menu bar</p>
+  </div>
+  <img class="settings-shot" src="shots/settings.png" alt="">
+  <img class="menu-shot" src="shots/menu.png" alt="">
+</section>
+
+<!-- 6 — connecting browsers -->
+<section class="shot desktop teal" id="shot-6">
+  <div class="menu-bar">
+    <img src="../imgs/menubar-left.avif" alt="">
+    <span class="menu-gap"></span>
+    <img src="menubar-right.png" alt="">
+  </div>
+  <div class="side-copy on-left">
+    <h1 class="headline">Set up in a minute</h1>
+    <p class="subline">Connect <img class="inline-icon" src="browsers/chrome.png" alt="">Chrome, <img class="inline-icon" src="browsers/safari.png" alt="">Safari, <img class="inline-icon" src="browsers/firefox.png" alt="">Firefox,<br><img class="inline-icon" src="browsers/edge.png" alt="">Edge, <img class="inline-icon" src="browsers/brave.png" alt="">Brave or <img class="inline-icon" src="browsers/opera.png" alt="">Opera<br>with an extension, in a few clicks</p>
+  </div>
+  <img class="connect-shot" src="shots/connect.png" alt="">
+</section>
+
+<script>
+  // #n shows only screenshot n, for exporting it on its own.
+  const n = location.hash.slice(1);
+  const shot = n && document.getElementById(`shot-${n}`);
+  if (shot) {
+    document.body.classList.add("single");
+    shot.classList.add("current");
+  }
+</script>
+</body>
+</html>

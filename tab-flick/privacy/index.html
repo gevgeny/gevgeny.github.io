@@ -24,7 +24,7 @@
 <main class="privacy-main">
   <header class="privacy-header">
     <h1>Privacy Policy</h1>
-    <p class="privacy-updated">Effective September 13, 2026</p>
+    <p class="privacy-updated">Effective November 22, 2026</p>
     <p class="privacy-summary">TabFlick is designed to keep your browsing information on your Mac. The app and its browser extensions do not send your tabs, browsing history, or previews off your Mac.</p>
   </header>
 
@@ -36,10 +36,12 @@
 
     <section>
       <h2>How TabFlick handles browser data</h2>
-      <p>To show and manage your recent tabs, TabFlick handles tab titles, URLs, favicons, browser windows and tab state, thumbnail previews, and supported live-tab signals such as media playback, meeting microphone or camera state, and unread counts.</p>
-      <p>The browser extensions use their permissions to provide TabFlick’s features, including listing tabs, creating previews, detecting supported tab activity, and performing actions you request. <strong>This information stays on your device.</strong></p>
-      <p>Chrome asks for access to all websites because capturing a preview of the tab you are looking at requires that permission. TabFlick does not read page content under it. A small script runs only on a fixed list of media and messaging sites (YouTube, Spotify, Google Meet, Zoom, Slack, Teams and a few others) to read playback state, meeting microphone or camera state, and the unread count shown in the page title.</p>
+      <p>To show and manage your recent tabs, TabFlick handles tab titles, URLs, favicons, browser windows and tab state, thumbnail previews, and whether a tab is playing sound or muted, as reported by the browser.</p>
+      <p>The browser extensions use their permissions to provide TabFlick’s features, including listing tabs, creating previews, and performing actions you request, such as switching, closing, pinning or muting a tab. <strong>This information stays on your device.</strong></p>
+      <p>Chrome asks for access to all websites because capturing a preview of the tab you are looking at requires that permission. TabFlick does not read page content under it, and runs no scripts inside the pages you visit.</p>
+      <p>To show unread messages, TabFlick reads only the browser tab’s title, such as “(3) WhatsApp”, where the site itself puts its unread count. It does this only for these sites: Gmail, WhatsApp Web, Messenger, LinkedIn, Microsoft Teams, Proton Mail, Instagram and Discord. It never reads the page or your messages, and the title stays on your Mac like all other tab information. You can turn this off in the app’s Settings under “Tab activity”.</p>
       <p>The extensions communicate only with the TabFlick Mac app on the same computer through a local WebSocket connection at <code>127.0.0.1</code>, using ports <code>43117–43121</code>. The app’s server listens only on the loopback interface, so it is not accessible from the local network or the internet. For Chrome, the app verifies that the connection carries TabFlick’s Chrome Web Store extension origin. Every client must also complete a matching handshake before the app accepts the connection. TabFlick operates no server that receives your browser data, and never sells or shares it.</p>
+      <p>To show a tab’s icon, the app may load it from that tab’s website, as your browser does.</p>
       <p>The use of information received from Google APIs adheres to the Chrome Web Store User Data Policy, including the Limited Use requirements.</p>
       <p>TabFlick does not access or operate in private or incognito browser windows or tabs.</p>
     </section>
