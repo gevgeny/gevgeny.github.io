@@ -8,12 +8,7 @@
   --bg-card: #171b26;
   --border: rgba(255, 255, 255, 0.09);
   --border-strong: rgba(255, 255, 255, 0.16);
-  --hud-border: rgba(255, 255, 255, 0.12);
-  --hud-panel-bg: rgba(37, 49, 77, 0.46);
-  --hud-filter: blur(28px) saturate(135%);
   --nav-bg: rgba(13, 15, 20, 0.84);
-  --card-resting-shadow: drop-shadow(0 4px 10px rgba(0, 0, 0, 0));
-  --card-selected-shadow: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
   --install-border: rgba(122, 162, 255, 0.4);
   --install-background: linear-gradient(180deg, rgba(122, 162, 255, 0.14), var(--bg-card));
   --install-action-border: rgba(122, 162, 255, 0.32);
@@ -27,10 +22,6 @@
   --radius: 14px;
   --maxw: 1060px;
   --pad: 24px;
-  --promo-titlebar-height: 36px;
-  /* The bar is a screenshot now, cropped at 60px for a 2x display — so 30px is
-     its native size, and anything else resamples it. */
-  --promo-menubar-height: 30px;
 }
 
 * { box-sizing: border-box; }
@@ -183,7 +174,6 @@ kbd {
 /* ---------- promo gallery ---------- */
 
 .promo-gallery {
-  --promo-window-height: 636px;
   --promo-window-radius: 16px;
   position: relative;
   max-width: var(--maxw);
@@ -194,7 +184,10 @@ kbd {
 .promo-track {
   display: flex;
   overflow-x: auto;
+  /* The slides are dark like the page, so their edge is drawn here. */
+  border: 1px solid var(--border-strong);
   border-radius: var(--promo-window-radius);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(122, 162, 255, 0.10);
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -209,21 +202,16 @@ kbd {
   scroll-snap-stop: always;
 }
 
-.promo-gallery .stage { margin-top: 0; }
-.promo-gallery .window {
-  display: flex;
-  flex-direction: column;
-  height: var(--promo-window-height);
-}
-.promo-gallery .window-content {
-  flex: 1;
-  min-height: 0;
+.promo-image {
+  display: block;
+  width: 100%;
   height: auto;
+  aspect-ratio: 16 / 10;
 }
 
 .promo-controls {
   position: absolute;
-  top: calc(var(--promo-window-height) / 2);
+  top: 50%;
   left: calc(var(--pad) + 12px);
   right: calc(var(--pad) + 12px);
   z-index: 2;
@@ -263,457 +251,6 @@ kbd {
 .promo-control:disabled {
   cursor: default;
   opacity: 0.35;
-}
-
-/* ---------- promo windows ---------- */
-
-/* Card geometry is the app's own: a 140px card, a 90px thumbnail and a 20px gap
-   split as padding either side, so a card occupies 160px and six of them 960px
-   inside the 1012px hero. */
-.stage {
-  --card-w: 140px;
-  --thumb-h: 90px;
-  --gap: 20px;
-  --window-page-h: 560px;
-  margin-top: 72px;
-}
-
-.section-title.stage-title {
-  position: absolute;
-  top: 40px;
-  left: 50%;
-  z-index: 1;
-  width: calc(100% - 48px);
-  margin: 0;
-  transform: translateX(-50%);
-  color: rgba(18, 27, 36, 0.90);
-  font-size: clamp(25px, 3.4vw, 34px);
-  text-shadow: 0 1px 18px rgba(255, 255, 255, 0.28);
-}
-
-.window {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: linear-gradient(180deg, #171b26, #10131b);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(122, 162, 255, 0.10);
-}
-
-.window-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: var(--promo-titlebar-height);
-  padding: 0 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-.dot { width: 11px; height: 11px; border-radius: 50%; }
-.dot-r { background: #ff5f57; }
-.dot-y { background: #febc2e; }
-.dot-g { background: #28c840; }
-.window-tab {
-  height: 20px;
-  width: 190px;
-  margin-left: 10px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.07);
-}
-.window-tab-dim { width: 140px; margin-left: 0; background: rgba(255, 255, 255, 0.035); }
-
-.browser-identity {
-  --browser-count: 3;
-  --browser-turn: 3s;
-  position: relative;
-  width: 190px;
-  height: 24px;
-  margin-left: 10px;
-}
-.browser-identity-item {
-  position: absolute;
-  inset: 0 auto 0 0;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  opacity: 0;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 12px;
-  font-weight: 600;
-  animation: browser-identity-fade calc(var(--browser-turn) * var(--browser-count)) infinite;
-}
-.browser-identity-item:nth-child(2) { animation-delay: var(--browser-turn); }
-.browser-identity-item:nth-child(3) { animation-delay: calc(var(--browser-turn) * 2); }
-.browser-identity-item img {
-  width: 18px;
-  height: 18px;
-}
-
-@keyframes browser-identity-fade {
-  0%, 27% { opacity: 1; transform: translateY(0); }
-  32%, 100% { opacity: 0; transform: translateY(-3px); }
-}
-
-.window-content {
-  position: relative;
-  height: var(--window-page-h);
-}
-
-.window-page {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-}
-.desktop-wallpaper { object-fit: cover; }
-
-/* A capture of the real switcher, centred over the page the way it appears. */
-.switcher-shot {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  display: block;
-  width: min(92%, 1012px);
-  height: auto;
-  transform: translate(-50%, -50%);
-}
-/* Title and shot in one column so the gap between them is exactly that — the
-   title's height rides on a clamp() font size, so no fixed offset holds at every
-   width. The stack owns the space below the window's top inset; the frame takes
-   whatever the title leaves. */
-.multi-stack {
-  --multi-top: 28px;
-  position: absolute;
-  top: var(--multi-top);
-  left: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  width: 100%;
-  height: calc(var(--window-page-h) - var(--multi-top));
-  transform: translateX(-50%);
-}
-.multi-stack .stage-title {
-  position: static;
-  transform: none;
-}
-
-/* Three stacked strips run taller than the window. The frame is the visible area,
-   so its bottom edge is the window's — masking it there fades the shot out where
-   it gets cut. Masking the image instead fades its own bottom, which is off-screen
-   and clipped away unseen. */
-.multi-shot-frame {
-  --multi-fade-height: 120px;
-  flex: 1;
-  min-height: 0;
-  width: min(88%, 940px);
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    #000 0,
-    #000 calc(100% - var(--multi-fade-height)),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    #000 0,
-    #000 calc(100% - var(--multi-fade-height)),
-    transparent 100%
-  );
-}
-.multi-shot {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* Frosted HUD panel — same recipe as FrostedPanel.swift (blur + accent tint) —
-   floating over the page, the way the real overlay sits above the browser. */
-.overlay {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding: calc(var(--gap) / 2);
-  /* The card carries its own half-gap under the title, so a full gutter here
-     leaves the strip looking bottom-heavy. */
-  padding-bottom: 4px;
-  border: 1px solid var(--hud-border);
-  border-radius: 20px;
-  background: var(--hud-panel-bg);
-  -webkit-backdrop-filter: var(--hud-filter);
-  backdrop-filter: var(--hud-filter);
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5);
-}
-
-.cards { display: flex; }
-
-.tab-card {
-  position: relative;
-  /* The gutter rides inside the basis: with border-box, padding would otherwise
-     come out of the card's own width and squash the thumbnail's proportions. */
-  flex: 0 0 calc(var(--card-w) + var(--gap));
-  /* min-width:auto would let a long title push the card past its basis, so the
-     row would come out ragged. */
-  min-width: 0;
-  margin: 0;
-  padding: calc(var(--gap) / 2);
-  transition: transform 0.18s ease, filter 0.18s ease;
-}
-
-.tab-action {
-  --tab-action-icon-size: 10px;
-  --tab-action-icon-stroke: 2px;
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  display: grid;
-  place-items: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  color: #fff;
-  font: 700 15px/1 -apple-system, BlinkMacSystemFont, sans-serif;
-  opacity: 0;
-  transform: translate(4px, -4px) scale(0.8);
-  transition: opacity 0.12s ease-out, transform 0.12s ease-out;
-  pointer-events: none;
-}
-.browser-promo .tab-card:hover .tab-action {
-  opacity: 1;
-  transform: translate(4px, -4px) scale(1);
-}
-.tab-action-close { background: #ff6b6b; }
-.tab-action-close::before,
-.tab-action-close::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: var(--tab-action-icon-size);
-  height: var(--tab-action-icon-stroke);
-  border-radius: var(--tab-action-icon-stroke);
-  background: currentColor;
-  content: "";
-}
-.tab-action-close::before { transform: translate(-50%, -50%) rotate(45deg); }
-.tab-action-close::after { transform: translate(-50%, -50%) rotate(-45deg); }
-.tab-action-unpin { background: #ff9500; }
-.tab-action-unpin svg {
-  width: 12px;
-  height: 12px;
-  fill: currentColor;
-}
-.tab-action-unpin .tab-action-slash {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-}
-
-.thumb {
-  display: block;
-  position: relative;
-  height: var(--thumb-h);
-  border-radius: 8px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.08);
-}
-.thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
-
-/* Selected card: accent ring plus a dark inner hairline, so the highlight stays
-   readable over a light thumbnail — same trick the app uses. */
-.thumb::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 8px;
-  box-shadow: inset 0 0 0 2px transparent, inset 0 0 0 4px transparent;
-  transition: box-shadow 0.18s ease;
-}
-
-.meta { display: flex; align-items: center; gap: 4px; margin-top: 6px; min-width: 0; }
-/* Each site's own favicon, vendored so the page still makes no outside requests. */
-.fav {
-  width: 14px;
-  height: 14px;
-  flex: none;
-  object-fit: contain;
-}
-.fav-linkedin {
-  display: grid;
-  place-items: center;
-  border-radius: 2px;
-  background: #0a66c2;
-  color: #fff;
-  font-size: 8px;
-  font-weight: 750;
-  line-height: 1;
-}
-.fav-facebook,
-.fav-yahoo,
-.fav-x {
-  display: grid;
-  place-items: center;
-  border-radius: 2px;
-  color: #fff;
-  font-size: 8px;
-  font-weight: 750;
-  line-height: 1;
-}
-.fav-facebook { background: #1877f2; }
-.fav-yahoo { background: #6001d2; }
-.fav-x { background: #111; }
-
-.title {
-  min-width: 0;  /* let the flex item shrink so the ellipsis can apply */
-  overflow: hidden;
-  color: #fff;
-  font-size: 14px;
-  line-height: 1.4;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-/* The selection walks the row on a loop, as if the shortcut were held down.
-   --step is one card's turn; the cycle is six of them. */
-.cards { --step: 1.2s; --cycle: 7.2s; }
-
-/* Each card's turn is held in --d. It has to be a custom property rather than
-   animation-delay directly: the ring lives on .thumb::after, and animation
-   properties don't inherit into pseudo-elements while custom properties do. */
-.tab-card { --d: 0s; }
-.tab-card:nth-child(2) { --d: var(--step); }
-.tab-card:nth-child(3) { --d: calc(var(--step) * 2); }
-.tab-card:nth-child(4) { --d: calc(var(--step) * 3); }
-.tab-card:nth-child(5) { --d: calc(var(--step) * 4); }
-.tab-card:nth-child(6) { --d: calc(var(--step) * 5); }
-
-.tab-card { animation: card-lift var(--cycle) var(--d) infinite ease-out; }
-.tab-card .thumb::after { animation: card-ring var(--cycle) var(--d) infinite ease-out; }
-
-@keyframes card-lift {
-  0%, 100% { transform: scale(1); filter: var(--card-resting-shadow); }
-  2.5%, 14.167% { transform: scale(1.12); filter: var(--card-selected-shadow); }
-  16.667% { transform: scale(1); filter: var(--card-resting-shadow); }
-}
-@keyframes card-ring {
-  0%, 100% { box-shadow: inset 0 0 0 2px transparent, inset 0 0 0 4px transparent; }
-  2.5%, 14.167% { box-shadow: inset 0 0 0 2px var(--accent), inset 0 0 0 4px rgba(0, 0, 0, 0.55); }
-  16.667% { box-shadow: inset 0 0 0 2px transparent, inset 0 0 0 4px transparent; }
-}
-/* ---------- multi-window promo ---------- */
-
-.multi-stage {
-  --window-page-h: 600px;
-  margin-top: 0;
-}
-
-.desktop-window {
-  border-radius: var(--promo-window-radius);
-  background: #c9d0d0;
-}
-/* Two crops of the real menu bar rather than a rebuild: the browser can't match
-   AppKit's text rasterization, so a recreation always reads slightly wrong. The
-   crops don't reach across the window, so the fill between them is sampled from
-   their own background and the seam disappears. */
-.desktop-menu-bar {
-  display: flex;
-  align-items: center;
-  height: var(--promo-menubar-height);
-  background: #efeee4;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
-}
-.menubar-shot {
-  display: block;
-  height: 100%;
-  width: auto;  /* 2x crops: height drives the scale, so they stay crisp */
-}
-/* Bridges the two crops and holds them apart. The real bar is translucent and
-   drifts across the wallpaper behind it, so the join carries that drift rather
-   than a flat patch — and being its own box, the gradient spans the gap exactly
-   however wide the window gets. */
-.menubar-gap {
-  flex: 1;
-  align-self: stretch;
-  background: linear-gradient(90deg, #eae8e0, #e0ddd5);
-}
-
-/* ---------- promo: the rest of the app ---------- */
-
-.more-stage {
-  --window-page-h: 600px;
-  margin-top: 0;
-}
-.more-window {
-  border-radius: var(--promo-window-radius);
-  background: #0d0f14;
-}
-/* Distance from the bar's right edge to the left edge of the TabFlick icon in
-   the status crop — the menu drops from there, the way it does when clicked. */
-.more-stage {
-  --menu-w: 205px;
-  --menu-icon-left: 254px;
-}
-/* Settings is a tall portrait window, so it takes the left and the words take the
-   column beside it — ranged left, since centred text in a narrow column combs
-   into ragged edges on both sides. */
-.more-heading {
-  position: absolute;
-  top: 52%;
-  left: auto;
-  right: 44px;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-  width: min(42%, 430px);
-  transform: translateY(-50%);
-}
-.more-heading .stage-title {
-  position: static;
-  width: auto;
-  transform: none;
-  color: rgba(255, 255, 255, 0.92);
-  text-align: left;
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.42);
-}
-.stage-sub {
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 18px;
-  line-height: 1.5;
-  text-align: left;
-  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
-}
-
-/* Settings sits square-on with the menu overlapping its lower corner, the way
-   they land when both are open — rather than two screenshots side by side. */
-/* The screenshots are cropped to the window edge with no shadow baked in, so the
-   lift is drawn here — and follows the window's own rounding rather than a box. */
-.more-shot {
-  position: absolute;
-  display: block;
-  filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.55));
-}
-.more-shot-settings {
-  top: 50%;
-  left: 46px;
-  width: auto;
-  height: 88%;
-  transform: translateY(-50%);
-}
-/* Top-left corner on the menu-bar icon, opening down and to the right. */
-.more-shot-menu {
-  top: 8px;
-  right: 30px;
-  width: var(--menu-w);
-  height: auto;
-}
-
-.multi-stage .stage-title {
-  top: 28px;
-  color: rgba(255, 255, 255, 0.92);
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.42);
 }
 
 /* ---------- sections ---------- */
@@ -914,22 +451,6 @@ kbd {
 /* ---------- responsive ---------- */
 
 @media (max-width: 760px) {
-  .promo-gallery {
-    --promo-mobile-content-inset: 18px;
-    --promo-mobile-fade-width: 64px;
-    --promo-mobile-title-size: 21px;
-    --promo-mobile-title-line-height: 1.15;
-    --promo-mobile-visible-width:
-      calc(100vw - var(--pad) - var(--pad) - var(--promo-mobile-content-inset));
-  }
-  .section-title.stage-title {
-    font-size: var(--promo-mobile-title-size);
-    line-height: var(--promo-mobile-title-line-height);
-  }
-  .window-bar,
-  .desktop-menu-bar {
-    display: none;
-  }
   .nav-links { display: none; }
   .install-row {
     grid-template-columns: 1fr;
@@ -947,18 +468,6 @@ kbd {
 
 @media (prefers-reduced-motion: reduce) {
   .promo-track { scroll-behavior: auto; }
-  .browser-identity-item { animation: none; }
-  .browser-identity-item:first-child { opacity: 1; }
   html { scroll-behavior: auto; }
   .btn:hover { transform: none; }
-
-  /* No cycling — show the switcher in its resting state, first card selected. */
-  .tab-card, .tab-card * { animation: none !important; }
-  .tab-card:first-child {
-    transform: scale(1.12);
-    filter: var(--card-selected-shadow);
-  }
-  .tab-card:first-child .thumb::after {
-    box-shadow: inset 0 0 0 2px var(--accent), inset 0 0 0 4px rgba(0, 0, 0, 0.55);
-  }
 }
