@@ -137,8 +137,14 @@ kbd {
   color: var(--text);
 }
 .browser img {
+  --icon-size: 17px;
+  --cap-height: 0.7em;  /* the system font's capitals */
+  width: var(--icon-size);
+  height: var(--icon-size);
   margin-right: 5px;
-  vertical-align: -0.22em;  /* sit the icon on the text's x-height */
+  /* Centre the icon on the capitals rather than the x-height, which sits it low
+     next to names that all start with a capital. */
+  vertical-align: calc((var(--cap-height) - var(--icon-size)) / 2);
 }
 
 .cta-row {
